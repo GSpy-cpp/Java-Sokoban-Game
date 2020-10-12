@@ -9,21 +9,25 @@ import javax.swing.*;
 
 public class Board extends JPanel {
 
-    private final int OFFSET = 30;
-    private final int SPACE = 20;
-    private final int LEFT_COLLISION = 1;
-    private final int RIGHT_COLLISION = 2;
-    private final int TOP_COLLISION = 3;
+    private final int OFFSET           = 30;
+    private final int SPACE            = 20;
+    private final int LEFT_COLLISION   = 1;
+    private final int RIGHT_COLLISION  = 2;
+    private final int TOP_COLLISION    = 3;
     private final int BOTTOM_COLLISION = 4;
 
-    private ArrayList<Wall> walls;
+    private ArrayList<Wall>    walls;
     private ArrayList<Baggage> baggs;
-    private ArrayList<Area> areas;
+    private ArrayList<Area>    areas;
     
     private Player soko;
-    private int w = 0;
-    private int h = 0;
-    private int moveCount;
+    private int    w = 0;
+    private int    h = 0;
+
+    private CircleStack<Integer> playerMoveStack;
+    private CircleStack<Boolean> bagMoveStack;
+    private int                  moveCount;
+
     private JFrame frame;
     
     private boolean isCompleted = false;
@@ -65,7 +69,9 @@ public class Board extends JPanel {
     }
 
     private void initWorld() {
-        moveCount = 0;
+        playerMoveStack = new CircleStack<>(10);
+        bagMoveStack    = new CircleStack<>(10);
+        moveCount       = 0;
         
         walls = new ArrayList<>();
         baggs = new ArrayList<>();
@@ -74,9 +80,9 @@ public class Board extends JPanel {
         int x = OFFSET;
         int y = OFFSET;
 
-        Wall wall;
+        Wall    wall;
         Baggage b;
-        Area a;
+        Area    a;
 
         for (int i = 0; i < level.length(); i++) {
 
@@ -197,6 +203,7 @@ public class Board extends JPanel {
                     }
                     
                     soko.move(-SPACE, 0);
+                    playerMoveStack.push(KeyEvent.VK_LEFT);
                     moveCount++;
                     
                     break;
@@ -212,6 +219,7 @@ public class Board extends JPanel {
                     }
                     
                     soko.move(SPACE, 0);
+                    playerMoveStack.push(KeyEvent.VK_RIGHT);
                     moveCount++;
                     
                     break;
@@ -227,6 +235,7 @@ public class Board extends JPanel {
                     }
                     
                     soko.move(0, -SPACE);
+                    playerMoveStack.push(KeyEvent.VK_UP);
                     moveCount++;
                     
                     break;
@@ -242,6 +251,7 @@ public class Board extends JPanel {
                     }
                     
                     soko.move(0, SPACE);
+                    playerMoveStack.push(KeyEvent.VK_DOWN);
                     moveCount++;
                     
                     break;
@@ -252,7 +262,17 @@ public class Board extends JPanel {
 
                     
                     break;
-                    
+
+                case KeyEvent.VK_U:
+
+                    if (playerMoveStack.isEmpty()) {
+                        return;
+                    }
+
+                    undo(playerMoveStack.pop());
+
+                    break;
+
                 default:
                     break;
             }
@@ -329,6 +349,8 @@ public class Board extends JPanel {
 
     private boolean checkBagCollision(int type) {
 
+        boolean bagMovedFlag = false;
+
         switch (type) {
             
             case LEFT_COLLISION:
@@ -356,10 +378,15 @@ public class Board extends JPanel {
                         }
                         
                         bag.move(-SPACE, 0);
+                        bagMoveStack.push(true);
+                        bagMovedFlag = true;
                         isCompleted();
                     }
                 }
-                
+
+                if (!bagMovedFlag) {
+                    this.bagMoveStack.push(false);
+                }
                 return false;
                 
             case RIGHT_COLLISION:
@@ -387,8 +414,14 @@ public class Board extends JPanel {
                         }
                         
                         bag.move(SPACE, 0);
+                        bagMoveStack.push(true);
+                        bagMovedFlag = true;
                         isCompleted();
                     }
+                }
+
+                if (!bagMovedFlag) {
+                    this.bagMoveStack.push(false);
                 }
                 return false;
                 
@@ -417,10 +450,15 @@ public class Board extends JPanel {
                         }
                         
                         bag.move(0, -SPACE);
+                        bagMoveStack.push(true);
+                        bagMovedFlag = true;
                         isCompleted();
                     }
                 }
 
+                if (!bagMovedFlag) {
+                    this.bagMoveStack.push(false);
+                }
                 return false;
                 
             case BOTTOM_COLLISION:
@@ -449,11 +487,16 @@ public class Board extends JPanel {
                         }
                         
                         bag.move(0, SPACE);
+                        bagMoveStack.push(true);
+                        bagMovedFlag = true;
                         isCompleted();
                     }
                 }
-                
-                break;
+
+                if (!bagMovedFlag) {
+                    this.bagMoveStack.push(false);
+                }
+                return false;
                 
             default:
                 break;
@@ -499,6 +542,66 @@ public class Board extends JPanel {
 
         if (isCompleted) {
             isCompleted = false;
+        }
+    }
+
+    private void undo(int keyEvent) {
+
+        switch (keyEvent) {
+            case KeyEvent.VK_LEFT:
+
+                if (this.bagMoveStack.pop()) {
+                    for (Baggage bag : this.baggs) {
+                        if (soko.isLeftCollision(bag)) {
+                            bag.move(SPACE, 0);
+                        }
+                    }
+                }
+                soko.move(SPACE, 0);
+
+                break;
+
+            case KeyEvent.VK_RIGHT:
+
+                if (this.bagMoveStack.pop()) {
+                    for (Baggage bag : this.baggs) {
+                        if (soko.isRightCollision(bag)) {
+                            bag.move(-SPACE, 0);
+                        }
+                    }
+                }
+                soko.move(-SPACE, 0);
+
+                break;
+
+            case KeyEvent.VK_UP:
+
+                if (this.bagMoveStack.pop()) {
+                    for (Baggage bag : this.baggs) {
+                        if (soko.isTopCollision(bag)) {
+                            bag.move(0, SPACE);
+                        }
+                    }
+                }
+                soko.move(0, SPACE);
+
+                break;
+
+            case KeyEvent.VK_DOWN:
+
+                if (this.bagMoveStack.pop()) {
+                    for (Baggage bag : this.baggs) {
+                        if (soko.isBottomCollision(bag)) {
+                            bag.move(0, -SPACE);
+                        }
+                    }
+                }
+                soko.move(0, -SPACE);
+
+                break;
+
+            default:
+                break;
         }
     }
 }
