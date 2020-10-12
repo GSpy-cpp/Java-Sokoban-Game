@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class Board extends JPanel {
 
@@ -23,6 +23,8 @@ public class Board extends JPanel {
     private Player soko;
     private int w = 0;
     private int h = 0;
+    private int moveCount;
+    private JFrame frame;
     
     private boolean isCompleted = false;
 
@@ -39,9 +41,12 @@ public class Board extends JPanel {
             + "    ##     #########\n"
             + "    ########\n";
 
-    public Board() {
-
+    public Board(JFrame f) {
+        this.frame = f;
         initBoard();
+
+        f.setSize(this.getBoardWidth() + 5*OFFSET,
+                    this.getBoardHeight() + 2*OFFSET);
     }
 
     private void initBoard() {
@@ -60,6 +65,7 @@ public class Board extends JPanel {
     }
 
     private void initWorld() {
+        moveCount = 0;
         
         walls = new ArrayList<>();
         baggs = new ArrayList<>();
@@ -147,6 +153,9 @@ public class Board extends JPanel {
                 g.drawImage(item.getImage(), item.x(), item.y(), this);
             }
 
+            g.setColor(new Color(0, 0, 0));
+            g.drawString("Moves : " + moveCount, getBoardWidth() + 2*OFFSET, 50);
+
             if (isCompleted) {
                 
                 g.setColor(new Color(0, 0, 0));
@@ -188,6 +197,7 @@ public class Board extends JPanel {
                     }
                     
                     soko.move(-SPACE, 0);
+                    moveCount++;
                     
                     break;
                     
@@ -202,6 +212,7 @@ public class Board extends JPanel {
                     }
                     
                     soko.move(SPACE, 0);
+                    moveCount++;
                     
                     break;
                     
@@ -216,6 +227,7 @@ public class Board extends JPanel {
                     }
                     
                     soko.move(0, -SPACE);
+                    moveCount++;
                     
                     break;
                     
@@ -230,12 +242,14 @@ public class Board extends JPanel {
                     }
                     
                     soko.move(0, SPACE);
+                    moveCount++;
                     
                     break;
                     
                 case KeyEvent.VK_R:
                     
                     restartLevel();
+
                     
                     break;
                     
