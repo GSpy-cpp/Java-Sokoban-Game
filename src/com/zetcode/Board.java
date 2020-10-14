@@ -15,6 +15,7 @@ public class Board extends JPanel {
     private final int RIGHT_COLLISION  = 2;
     private final int TOP_COLLISION    = 3;
     private final int BOTTOM_COLLISION = 4;
+    private final int MAX_MOVE         = 300;
 
     private ArrayList<Wall>    walls;
     private ArrayList<Baggage> baggs;
@@ -160,12 +161,15 @@ public class Board extends JPanel {
             }
 
             g.setColor(new Color(0, 0, 0));
-            g.drawString("Moves : " + moveCount, getBoardWidth() + 2*OFFSET, 50);
+            g.drawString("Moves : " + moveCount + " / " + MAX_MOVE, getBoardWidth() + OFFSET, 50);
 
             if (isCompleted) {
-                
                 g.setColor(new Color(0, 0, 0));
                 g.drawString("Completed", 25, 20);
+
+            } else if (moveCount == MAX_MOVE) {
+                g.setColor(new Color(0, 0, 0));
+                g.drawString("Game Over", 25, 20);
             }
 
         }
@@ -184,6 +188,9 @@ public class Board extends JPanel {
         public void keyPressed(KeyEvent e) {
 
             if (isCompleted) {
+                return;
+            }
+            if (moveCount == MAX_MOVE) {
                 return;
             }
 
