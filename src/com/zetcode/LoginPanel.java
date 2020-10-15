@@ -38,8 +38,9 @@ public class LoginPanel extends JPanel {
                 String id       = IDTextField.getText();
                 String password = passwordTextField.getText();
                 if (isValidUser(id, password)) {                 // 로그인에 성공한 경우 실행되는 코드
-                    frame.changePanel(frame.getIntroPanelName());// ******** 수정 필요함 ********
-                                                                 // 로그인에 성공한 경우 실행되는 코드
+                    frame.setUserid(id);
+                    frame.changePanel(frame.getIntroPanelName());
+
                 } else {
                     System.out.println("login failed");
                 }

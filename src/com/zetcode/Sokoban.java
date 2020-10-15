@@ -17,6 +17,8 @@ public class Sokoban extends JFrame {// main Ŭ����
 	private final String PUTINORDERPANEL_NAME = "putinorderPanel";
 	private final String GAUGEPANEL_NAME      = "gaugePanel";
 
+	private String userid;
+
 	private CardLayout cards;
 
 	public Sokoban() {
@@ -92,6 +94,10 @@ public class Sokoban extends JFrame {// main Ŭ����
 	public String getPutInOrderPanelName() {
 		return PUTINORDERPANEL_NAME;
 	}
+
+	public String getUserid() { return this.userid; }
+
+	public void setUserid(String id) { this.userid = id; }
 
 	public static void main(String[] args) {
 
