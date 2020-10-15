@@ -18,6 +18,7 @@ public class GamePanel extends JPanel {
 	Sokoban sokoban;
 
 	public GamePanel(Sokoban sokoban) {
+		this.sokoban = sokoban;
 		image = Toolkit.getDefaultToolkit().getImage("IntroBackground_2.jpg");
 
 		GameKeyEvent handler = new GameKeyEvent(this);// 이벤트 리스너 객체
