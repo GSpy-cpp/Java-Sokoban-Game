@@ -18,6 +18,11 @@ public class Board extends JPanel {
     protected final int TOP_COLLISION    = 3;
     protected final int BOTTOM_COLLISION = 4;
     protected final int MAX_MOVE         = 300;
+    protected final int LEFT_DIRECTION   = 1;
+    protected final int RIGHT_DIRECTION  = 2;
+    protected final int UP_DIRECTION     = 3;
+    protected final int DOWN_DIRECTION   = 4;
+
 
     protected ArrayList<Wall>    walls;
     protected ArrayList<Baggage> baggs;
@@ -33,7 +38,7 @@ public class Board extends JPanel {
     protected int                  seconds;
     protected Timer                timer;
 
-    protected JFrame frame;
+    protected Sokoban frame;
 
     protected boolean isCompleted = false;
 
@@ -50,7 +55,7 @@ public class Board extends JPanel {
             + "    ##     #########\n"
             + "    ########\n";
 
-    public Board(JFrame f) {
+    public Board(Sokoban f) {
         this.frame = f;
         initBoard();
 
@@ -60,7 +65,7 @@ public class Board extends JPanel {
 
     protected void initBoard() {
 
-        addKeyListener(new TAdapter());
+        addKeyListener(createTAdapter());
         setFocusable(true);
         initWorld();
     }
@@ -631,4 +636,26 @@ public class Board extends JPanel {
         }
     }
 
+    protected void moveDirection(int direction) {
+        switch (direction) {
+            case LEFT_DIRECTION:
+                soko.move(-SPACE, 0);
+                break;
+            case RIGHT_DIRECTION:
+                soko.move(SPACE, 0);
+                break;
+            case UP_DIRECTION:
+                soko.move(0, -SPACE);
+                break;
+            case DOWN_DIRECTION:
+                soko.move(0, SPACE);
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected TAdapter createTAdapter() {
+        return new TAdapter();
+    }
 }

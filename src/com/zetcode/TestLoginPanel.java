@@ -3,7 +3,7 @@ package com.zetcode;
 import javax.swing.*;
 import java.awt.*;
 
-public class TestLoginPanel extends JFrame {
+public class TestLoginPanel extends Sokoban {
     private CardLayout cards;
 
     public TestLoginPanel() {
