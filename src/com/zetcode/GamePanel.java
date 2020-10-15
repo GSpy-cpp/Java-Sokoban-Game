@@ -67,7 +67,7 @@ public class GamePanel extends JPanel {
 	}
 
 	public void hideStart() {
-		sokoban.changePanel(sokoban.getH);
+		sokoban.changePanel(sokoban.getHidePanelName());
 	}
 //
 //	public void gaugeStart() {
