@@ -4,22 +4,19 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Label;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class BasicPanel extends JPanel {
-	Image image, btnImage;
+	Image image;
 	viewController controller;
 	
-	JButton[] btn = new JButton[5];
-	
-	public BasicPanel() {
+	public BasicPanel(viewController controller) {
 		BasicKeyEvent handler = new BasicKeyEvent(this);
-		this.add(new Label("Basic MODE"));
 		image = Toolkit.getDefaultToolkit().getImage("IntroBackground_2.jpg");
+		this.controller = controller;
 		
 		JButton btn1 = new JButton("1LEVEL");
 		add(btn1);
@@ -60,18 +57,18 @@ public class BasicPanel extends JPanel {
 	}
 	
 	public void level2_Start() {
-		controller.basic_leven1();
+		controller.basic_leven2();
 	}
 	
 	public void level3_Start() {
-		controller.basic_leven1();
+		controller.basic_leven3();
 	}
 	
 	public void level4_Start() {
-		controller.basic_leven1();
+		controller.basic_leven4();
 	}
 	
 	public void level5_Start() {
-		controller.basic_leven1();
+		controller.basic_leven5();
 	}
 }

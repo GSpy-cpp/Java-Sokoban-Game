@@ -11,24 +11,24 @@ public class Board extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private final int OFFSET = 30;//À©µµ¿ì Ã¢ÀÇ Å×µÎ¸®¿Í °ÔÀÓ »çÀÌÀÇ °¡·Î °Å¸®
-    private final int SPACE = 20;//20*20px(º® ÀÌ¹ÌÁö »çÀÌÁî)
-    private final int LEFT_COLLISION = 1;//¿ÞÂÊ Ãæµ¹
-    private final int RIGHT_COLLISION = 2;//¿À¸¥ÂÊ Ãæµ¹
-    private final int TOP_COLLISION = 3;//»ó´Ü Ãæµ¹
-    private final int BOTTOM_COLLISION = 4;//ÇÏ´Ü Ãæµ¹
+	private final int OFFSET = 30;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ ï¿½×µÎ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½
+    private final int SPACE = 20;//20*20px(ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+    private final int LEFT_COLLISION = 1;//ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹
+    private final int RIGHT_COLLISION = 2;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹
+    private final int TOP_COLLISION = 3;//ï¿½ï¿½ï¿½ ï¿½æµ¹
+    private final int BOTTOM_COLLISION = 4;//ï¿½Ï´ï¿½ ï¿½æµ¹
     
-//ArrayList - Å©±â°¡ °¡º¯Àû(ÀÚµ¿Àû)À¸·Î º¯ÇÏ´Â ¼±Çü¸®½ºÆ®/ ArrayList<Å¸ÀÔ¼³Á¤>
-    private ArrayList<Wall> walls;//walls¸¦ ´ãÀ» ¼ö ÀÖ´Â ÄÁÅ×ÀÌ³Ê
-    private ArrayList<Baggage> baggs;//baggs¸¦ ´ãÀ» ¼ö ÀÖ´Â ÄÁÅ×ÀÌ³Ê
-    private ArrayList<Area> areas;//areas¸¦ ´ãÀ» ¼ö ÀÖ´Â ÄÁÅ×ÀÌ³Ê
+//ArrayList - Å©ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Úµï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®/ ArrayList<Å¸ï¿½Ô¼ï¿½ï¿½ï¿½>
+    private ArrayList<Wall> walls;//wallsï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
+    private ArrayList<Baggage> baggs;//baggsï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
+    private ArrayList<Area> areas;//areasï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
     
     private Player soko;
     private int w = 0;//width
     private int h = 0;//height
     
-    private boolean isCompleted = false;//½ÇÆÐ 
-//#=º®(wall), $=ÀÌµ¿ÇÒ »óÀÚ(baggage), .=¿ì¸®°¡ ¹Ú½º¸¦ ¿Å°Ü¾ß ÇÒ Àå¼Ò(area), @=¼ÒÄÚ¹Ý(sokoban)
+    private boolean isCompleted = false;//ï¿½ï¿½ï¿½ï¿½ 
+//#=ï¿½ï¿½(wall), $=ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(baggage), .=ï¿½ì¸®ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½Å°Ü¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½(area), @=ï¿½ï¿½ï¿½Ú¹ï¿½(sokoban)
     private String level =
               "    ######\n"
             + "    ##   #\n"
@@ -41,6 +41,25 @@ public class Board extends JPanel {
             + "###### ### #@##  ..#\n"
             + "    ##     #########\n"
             + "    ########\n";
+//    		"##################################"
+//    		+"# #   #                   #  #   #"
+//    		+"#.*     * * * * * * * * *      **#"
+//    		+"#  ############################  #"
+//    		+"## #     .       #            #  #"
+//    		+"#  # *********  ** $$$$$$$$$$ # ##"
+//    		+"#  #.*   @   *.$#  $          #  #"
+//    		+"## # *********  ** $$$$$$$$$$ #  #"
+//    		+"#  ##    .       #          $ # ##"
+//    		+"#. $ $##########  ##########$    #"
+//    		+"## ##.... . . . #$          $ #  #"
+//    		+"#  # .........  *. $$$$$$$$$$ # ##"
+//    		+"#  #...... . ..  # $          #  #"
+//    		+"## # .........  ** $$$$$$$$$$ #  #"
+//    		+"#  # .... . . . #             # ##"
+//    		+"#  ############################  #"
+//    		+"#**      * * * * * * * * *     *.#"
+//    		+"#   #  #                   #   # #"
+//    		+"##################################";
 
     public Board() {
 
@@ -63,10 +82,10 @@ public class Board extends JPanel {
     }
 
     private void initWorld() {
-    	//°ÔÀÓÀ» ÁøÇàÇÏ¸é¼­  walls,baggs,areasÄÁÅ×ÀÌ³Ê¸¦ Ã¤¿î´Ù.
+    	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸é¼­  walls,baggs,areasï¿½ï¿½ï¿½ï¿½ï¿½Ì³Ê¸ï¿½ Ã¤ï¿½ï¿½ï¿½.
     	
-        //ÄÁÅ×ÀÌ³Ê
-        walls = new ArrayList<>();//new¿¡¼­ Å¸ÀÔ »ý·« °¡´É/ Wall°´Ã¼µé¸¸ »ç¿ë °¡´É
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
+        walls = new ArrayList<>();//newï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/ Wallï¿½ï¿½Ã¼ï¿½é¸¸ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         baggs = new ArrayList<>();
         areas = new ArrayList<>();
 
@@ -79,7 +98,7 @@ public class Board extends JPanel {
 
         for (int i = 0; i < level.length(); i++) {
 
-            char item = level.charAt(i);//¹®ÀÚ¿­¿¡¼­ ÀÎÀÚ·Î ÁÖ¾îÁø °ª¿¡ ÇØ´çÇÏ´Â ¹®ÀÚ¸¦ ¸®ÅÏÇÑ´Ù.
+            char item = level.charAt(i);//ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 
             switch (item) {
 
@@ -101,8 +120,8 @@ public class Board extends JPanel {
 
                 case '$':
                     b = new Baggage(x, y);
-                    baggs.add(b);//baggsÄÁÅ×ÀÌ³Ê¿¡ bÃß°¡
-                    x += SPACE;//xÀ§Ä¡¿¡ 20¸¸Å­ ´õÇÑ´Ù.
+                    baggs.add(b);//baggsï¿½ï¿½ï¿½ï¿½ï¿½Ì³Ê¿ï¿½ bï¿½ß°ï¿½
+                    x += SPACE;//xï¿½ï¿½Ä¡ï¿½ï¿½ 20ï¿½ï¿½Å­ ï¿½ï¿½ï¿½Ñ´ï¿½.
                     break;
 
                 case '.':
@@ -129,21 +148,21 @@ public class Board extends JPanel {
     }
 
     private void buildWorld(Graphics g) {
-    	//°ÔÀÓÀ» À©µµ¿ì¿¡ ±×¸°´Ù.
+    	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ ï¿½×¸ï¿½ï¿½ï¿½.
 
         g.setColor(new Color(250, 240, 170));
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        //ÁÂÇ¥ (0,0)¿¡ Å©±â¸¸Å­ »ç°¢ÇüÀ» ±×¸°´Ù.
+        //ï¿½ï¿½Ç¥ (0,0)ï¿½ï¿½ Å©ï¿½â¸¸Å­ ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
         ArrayList<Actor> world = new ArrayList<>();
-        //world = °ÔÀÓÀÇ ¸ðµç °´Ã¼¸¦ Æ÷ÇÔ
+        //world = ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         world.addAll(walls);
         world.addAll(areas);
         world.addAll(baggs);
         world.add(soko);
-        //ÄÁÅ×ÀÌ³Ê¸¦ ÅëÇØ ¹Ýº¹ÇØ¼­ ¹°Ã¼¸¦ ±×¸°´Ù. ÇÃ·¹ÀÌ¾î¿Í baggageÀÌ¹ÌÁöµéÀº Á¶±Ý ÀÛ¾Æ¼­ ÁÂÇ¥¿¡ 2px¸¦ ´õÇØ¼­ Áß½ÉÀ» Àâ´Â´Ù.
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ì³Ê¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½. ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ baggageï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾Æ¼ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ 2pxï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ß½ï¿½ï¿½ï¿½ ï¿½ï¿½Â´ï¿½.
         for (int i = 0; i < world.size(); i++) {
 
-            Actor item = world.get(i);//ÄÁÅ×ÀÌ³ÊµéÀ» ¹Ýº¹ÇØ¼­ »©³½´Ù.
+            Actor item = world.get(i);//ï¿½ï¿½ï¿½ï¿½ï¿½Ì³Êµï¿½ï¿½ï¿½ ï¿½Ýºï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
             if (item instanceof Player || item instanceof Baggage) {
                 
@@ -153,7 +172,7 @@ public class Board extends JPanel {
                 g.drawImage(item.getImage(), item.x(), item.y(), this);
             }
 
-            if (isCompleted) {//·¹º§ÀÌ ³¡³ª¸é, "Completed"¸¦ À©µµ¿ì Ã¢ ¿ÞÂÊ »ó´Ü ¸ð¼­¸®¿¡ ±×¸°´Ù.
+            if (isCompleted) {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, "Completed"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ð¼­¸ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
                 
                 g.setColor(new Color(0, 0, 0));
                 g.drawString("Completed", 25, 20);
@@ -164,30 +183,30 @@ public class Board extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);//super´Â ºÎ¸ð Å¬·¡½º·ÎºÎÅÍ »ó¼Ó¹ÞÀº ÇÊµå³ª ¸Þ¼Òµå¸¦ ÀÚ½Ä Å¬·¡½º¿¡¼­ ÂüÁ¶ÇÏ´Â µ¥ »ç¿ëÇÏ´Â ÂüÁ¶ º¯¼ö
-        //ÄÄÆ÷³ÍÆ®°¡ ±×¸®Á®¾ß ÇÏ´Â ½ÃÁ¡¸¶´Ù, Å©±â°¡ º¯°æµÇ°Å³ª À§Ä¡°¡ º¯°æµÇ°Å³ª ÄÄÆ÷³ÍÆ®°¡ °¡·ÁÁ³´ø °ÍÀÌ »ç¶óÁö´Â µî
+        super.paintComponent(g);//superï¿½ï¿½ ï¿½Î¸ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½ ï¿½Êµå³ª ï¿½Þ¼Òµå¸¦ ï¿½Ú½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Å©ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½Ç°Å³ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         buildWorld(g);
     }
 
-    private class TAdapter extends KeyAdapter {//Å° ÀÔ·Â¹Þ±â
+    private class TAdapter extends KeyAdapter {//Å° ï¿½Ô·Â¹Þ±ï¿½
 
         @Override
         public void keyPressed(KeyEvent e) {
 
             if (isCompleted) {
                 return;
-                //1. µÇµ¹¸°´Ù
-                //¾î¼Àºí·¯ ¼öÁØ¿¡¼­ ÄÚµåÀÇ ¼öÇà¼ø¼­°¡ °áÁ¤µÇ´Â ºÎºÐ
-                //2. ¾Æ¹«°Íµµ ¾ø´Â°ÍÀ»
-                //½ºÅÃ¿¡ ¾î¶² °ªµµ ÀúÀåÇÏÁö ¾Ê´Â°ÍÀ» ÀÇ¹Ì
-                //3. ¹®ÀåÀÇ ³¡
-                //ÄÄÆÄÀÏ·¯¿¡°Ô ¹®ÀåÀÌ ³¡³µÀ¸´Ï »õ·Î¿î ¹®ÀåÀÇ ÇØ¼®À» ÁØºñÇÒ°ÍÀ» ¾Ë·ÁÁØ´Ù.
+                //1. ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Îºï¿½
+                //2. ï¿½Æ¹ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½Â°ï¿½ï¿½ï¿½
+                //ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½î¶² ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â°ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½
+                //3. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+                //ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½Øºï¿½ï¿½Ò°ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½Ø´ï¿½.
             }
 
             int key = e.getKeyCode();
 
-            switch (key) {//¾î¶² Å°°¡ ´­·¯Á³´ÂÁö È®ÀÎÇÑ´Ù. ¿ì¸®´Â cursorÅ°¸¦ ÅëÇØ ¼ÒÄÚ¹Ý¹°Ã¼¸¦ Á¦¾îÇÑ´Ù.
-            	//¿ÞÂÊÀ» ´­·¶´Ù¸é, ¼ÒÄÚ¹ÝÀÌ wallÀÌ³ª baggage¿¡ Ãæµ¹Çß´ÂÁö Ã¼Å©ÇÑ´Ù. Ãæµ¹ÇÏÁö ¾Ê¾Ò´Ù¸é, ¼ÒÄÚ¹ÝÀ» ¿ÞÂÊÀ¸·Î ¿Å±ä´Ù.
+            switch (key) {//ï¿½î¶² Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ñ´ï¿½. ï¿½ì¸®ï¿½ï¿½ cursorÅ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¹Ý¹ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+            	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ù¸ï¿½, ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ wallï¿½Ì³ï¿½ baggageï¿½ï¿½ ï¿½æµ¹ï¿½ß´ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ñ´ï¿½. ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½, ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½.
                 case KeyEvent.VK_LEFT:
                 	
                     if (checkWallCollision(soko, LEFT_COLLISION)) {
@@ -244,7 +263,7 @@ public class Board extends JPanel {
                     
                     break;
                     
-                case KeyEvent.VK_R://RÅ°¸¦ ´©¸£¸é ·¹º§À» Àç½ÃÀÛÇÑ´Ù.
+                case KeyEvent.VK_R://RÅ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
                     
                     restartLevel();
                     
@@ -254,12 +273,12 @@ public class Board extends JPanel {
                     break;
             }
 
-            repaint();//È­¸éÀÌ ´Ù½Ã ±×·ÁÁöµµ·Ï ¿äÃ»
+            repaint();//È­ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
         }
     }
 
     private boolean checkWallCollision(Actor actor, int type) {
-    	//¼ÒÄÚ¹ÝÀÌ³ª baggage°¡ º®À» Åë°úÇÏÁö ¾Êµµ·Ï ¸¸µé¾îÁ³´Ù.
+    	//ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½Ì³ï¿½ baggageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
         switch (type) {
             
             case LEFT_COLLISION:
@@ -270,11 +289,11 @@ public class Board extends JPanel {
                     
                     if (actor.isLeftCollision(wall)) {
                         
-                        return true;//¼º°ø
+                        return true;//ï¿½ï¿½ï¿½ï¿½
                     }
                 }
                 
-                return false;//½ÇÆÐ
+                return false;//ï¿½ï¿½ï¿½ï¿½
                 
             case RIGHT_COLLISION:
                 
@@ -325,8 +344,8 @@ public class Board extends JPanel {
     }
 
     private boolean checkBagCollision(int type) {
-    	//baggage´Â º®, ¼ÒÄÚ¹Ý  ¹°Ã¼ ¶Ç´Â ´Ù¸¥ baggage¿Í Ãæµ¹ÇÒ ¼ö ÀÖ´Ù. ´Ù¸¥ ¹°Ã¼¿Í Ãæµ¹ÇÏÁö ¾Ê¾Æ¾ß baggage ¿Å±â±â °¡´É
-    	//baggage ¿Å±æ¶§´Â isCompleted()¿¡ ÀÇÇØ ·¹º§ÀÌ ³¡³µ´ÂÁö È®ÀÎÇÒ ¶§´Ù.
+    	//baggageï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½Ú¹ï¿½  ï¿½ï¿½Ã¼ ï¿½Ç´ï¿½ ï¿½Ù¸ï¿½ baggageï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½. ï¿½Ù¸ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Æ¾ï¿½ baggage ï¿½Å±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    	//baggage ï¿½Å±æ¶§ï¿½ï¿½ isCompleted()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
         switch (type) {
             
             case LEFT_COLLISION:
@@ -341,14 +360,14 @@ public class Board extends JPanel {
                             
                             Baggage item = baggs.get(j);
                             
-                            if (!bag.equals(item)) {//baggage°¡ baggage¿Í Ãæµ¹ÇÒ ¶§
+                            if (!bag.equals(item)) {//baggageï¿½ï¿½ baggageï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½
                                 
                                 if (bag.isLeftCollision(item)) {
                                     return true;
                                 }
                             }
                             
-                            if (checkWallCollision(bag, LEFT_COLLISION)) {//baggage°¡ º®°ú Ãæµ¹ÇÒ ¶§
+                            if (checkWallCollision(bag, LEFT_COLLISION)) {//baggageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½
                                 return true;
                             }
                         }
@@ -461,8 +480,8 @@ public class Board extends JPanel {
     }
 
     public void isCompleted() {
-    	//·¹º§ÀÌ ³¡³µ´ÂÁö È®ÀÎÇÑ´Ù.
-    	//baggageÀÇ ¼ö¸¦ ¾òÀ» ¼ö ÀÖ´Ù. ¸ðµç baggageÀÇ (x,y)ÁÂÇ¥¿Í ¸ñÀûÁö¸¦ ºñ±³ÇÑ´Ù.
+    	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ñ´ï¿½.
+    	//baggageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½. ï¿½ï¿½ï¿½ baggageï¿½ï¿½ (x,y)ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
         int nOfBags = baggs.size();
         int finishedBags = 0;
 
@@ -481,14 +500,14 @@ public class Board extends JPanel {
             }
         }
 
-        if (finishedBags == nOfBags) {//finishedBags¿Í nOfBags(°ÔÀÓ ³» baggage¼ö)¿Í °°À» ¶§ °ÔÀÓÀº Á¾·áµÈ´Ù.
+        if (finishedBags == nOfBags) {//finishedBagsï¿½ï¿½ nOfBags(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ baggageï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½.
             
             isCompleted = true;
             repaint();
         }
     }
 
-    private void restartLevel() {//Àç½ÃÀÛ
+    private void restartLevel() {//ï¿½ï¿½ï¿½ï¿½ï¿½
 
         areas.clear();
         baggs.clear();

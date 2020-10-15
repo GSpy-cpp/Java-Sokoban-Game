@@ -41,7 +41,13 @@ public class viewController {//frame view 변경, 추가하는 일
 	
 	public void showBasicPanel() {//기본소코반
 		contentPane.remove(gamePanel);//gamePanel제거
-		contentPane.add(new BasicPanel());
+		contentPane.add(new BasicPanel(this));
+		
+		basicPanel = new BasicPanel(this);
+		contentPane = mainFrame.getContentPane();
+		contentPane.add(basicPanel);
+		basicPanel.requestFocus();
+		
 		mainFrame.setVisible(false);
 		mainFrame.setVisible(true);
 	}
@@ -76,28 +82,28 @@ public class viewController {//frame view 변경, 추가하는 일
 	
 	public void basic_leven2() {
 		contentPane.remove(basicPanel);// gamePanel제거
-		contentPane.add(new Basic_1_Panel());//leven 2
+		contentPane.add(new Basic_2_Panel());//leven 2
 		mainFrame.setVisible(false);
 		mainFrame.setVisible(true);
 	}
 	
 	public void basic_leven3() {
 		contentPane.remove(basicPanel);// gamePanel제거
-		contentPane.add(new Basic_1_Panel());//leven 3
+		contentPane.add(new Basic_3_Panel());//leven 3
 		mainFrame.setVisible(false);
 		mainFrame.setVisible(true);
 	}
 	
 	public void basic_leven4() {
 		contentPane.remove(basicPanel);// gamePanel제거
-		contentPane.add(new Basic_1_Panel());//leven 4
+		contentPane.add(new Basic_4_Panel());//leven 4
 		mainFrame.setVisible(false);
 		mainFrame.setVisible(true);
 	}
 	
 	public void basic_leven5() {
 		contentPane.remove(basicPanel);// gamePanel제거
-		contentPane.add(new Basic_1_Panel());//leven 5
+		contentPane.add(new Basic_5_Panel());//leven 5
 		mainFrame.setVisible(false);
 		mainFrame.setVisible(true);
 	}

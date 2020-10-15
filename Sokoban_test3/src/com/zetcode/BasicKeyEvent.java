@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BasicKeyEvent implements ActionListener {
-	BasicPanel basicPanel_level;
+	BasicPanel basicPanel_level;// basic모드 생성자로 받음
 
 	public BasicKeyEvent(BasicPanel basicPanel_level) {
 		this.basicPanel_level = basicPanel_level;

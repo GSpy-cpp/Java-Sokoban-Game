@@ -14,13 +14,7 @@ public class GamePanel extends JPanel {
 	Image image;
 	viewController controller;
 
-//	public GamePanel() {
-////		this.add(new Label("choice the Gamemode"));//확인용
-//		lobby_image = Toolkit.getDefaultToolkit().getImage("IntroBackground_2.jpg");
-//	}
-
 	public GamePanel(viewController controller) {
-
 		image = Toolkit.getDefaultToolkit().getImage("IntroBackground_2.jpg");
 
 		this.controller = controller;
