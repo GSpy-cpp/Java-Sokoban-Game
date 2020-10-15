@@ -11,33 +11,33 @@ import javax.swing.*;
 
 public class Board extends JPanel {
 
-    private final int OFFSET           = 30;
-    private final int SPACE            = 20;
-    private final int LEFT_COLLISION   = 1;
-    private final int RIGHT_COLLISION  = 2;
-    private final int TOP_COLLISION    = 3;
-    private final int BOTTOM_COLLISION = 4;
-    private final int MAX_MOVE         = 300;
+    protected final int OFFSET           = 30;
+    protected final int SPACE            = 20;
+    protected final int LEFT_COLLISION   = 1;
+    protected final int RIGHT_COLLISION  = 2;
+    protected final int TOP_COLLISION    = 3;
+    protected final int BOTTOM_COLLISION = 4;
+    protected final int MAX_MOVE         = 300;
 
-    private ArrayList<Wall>    walls;
-    private ArrayList<Baggage> baggs;
-    private ArrayList<Area>    areas;
-    
-    private Player soko;
-    private int    w = 0;
-    private int    h = 0;
+    protected ArrayList<Wall>    walls;
+    protected ArrayList<Baggage> baggs;
+    protected ArrayList<Area>    areas;
 
-    private CircleStack<Integer> playerMoveStack;
-    private CircleStack<Boolean> bagMoveStack;
-    private int                  moveCount;
-    private int                  seconds;
-    private Timer                timer;
+    protected Player soko;
+    protected int    w = 0;
+    protected int    h = 0;
 
-    private JFrame frame;
-    
-    private boolean isCompleted = false;
+    protected CircleStack<Integer> playerMoveStack;
+    protected CircleStack<Boolean> bagMoveStack;
+    protected int                  moveCount;
+    protected int                  seconds;
+    protected Timer                timer;
 
-    private String level
+    protected JFrame frame;
+
+    protected boolean isCompleted = false;
+
+    protected String level
             = "    ######\n"
             + "    ##   #\n"
             + "    ##$  #\n"
@@ -58,7 +58,7 @@ public class Board extends JPanel {
                     this.getBoardHeight() + 2*OFFSET);
     }
 
-    private void initBoard() {
+    protected void initBoard() {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
@@ -73,7 +73,7 @@ public class Board extends JPanel {
         return this.h;
     }
 
-    private void initWorld() {
+    protected void initWorld() {
         playerMoveStack = new CircleStack<>(10);
         bagMoveStack    = new CircleStack<>(10);
         moveCount       = 0;
@@ -154,7 +154,7 @@ public class Board extends JPanel {
         }
     }
 
-    private void buildWorld(Graphics g) {
+    protected void buildWorld(Graphics g) {
 
         g.setColor(new Color(250, 240, 170));
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
@@ -201,7 +201,7 @@ public class Board extends JPanel {
         buildWorld(g);
     }
 
-    private class TAdapter extends KeyAdapter {
+    protected class TAdapter extends KeyAdapter {
 
         @Override
         public void keyPressed(KeyEvent e) {
@@ -307,7 +307,7 @@ public class Board extends JPanel {
         }
     }
 
-    private boolean checkWallCollision(Actor actor, int type) {
+    protected boolean checkWallCollision(Actor actor, int type) {
 
         switch (type) {
             
@@ -373,7 +373,7 @@ public class Board extends JPanel {
         return false;
     }
 
-    private boolean checkBagCollision(int type) {
+    protected boolean checkBagCollision(int type) {
 
         boolean bagMovedFlag = false;
 
@@ -558,7 +558,7 @@ public class Board extends JPanel {
         }
     }
 
-    private void restartLevel() {
+    protected void restartLevel() {
 
         areas.clear();
         baggs.clear();
@@ -571,7 +571,7 @@ public class Board extends JPanel {
         }
     }
 
-    private void undo(int keyEvent) {
+    protected void undo(int keyEvent) {
 
         switch (keyEvent) {
             case KeyEvent.VK_LEFT:
