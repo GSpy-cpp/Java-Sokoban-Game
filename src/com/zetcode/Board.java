@@ -2,6 +2,8 @@ package com.zetcode;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -28,6 +30,8 @@ public class Board extends JPanel {
     private CircleStack<Integer> playerMoveStack;
     private CircleStack<Boolean> bagMoveStack;
     private int                  moveCount;
+    private int                  seconds;
+    private Timer                timer;
 
     private JFrame frame;
     
@@ -73,6 +77,7 @@ public class Board extends JPanel {
         playerMoveStack = new CircleStack<>(10);
         bagMoveStack    = new CircleStack<>(10);
         moveCount       = 0;
+        seconds         = 0;
         
         walls = new ArrayList<>();
         baggs = new ArrayList<>();
@@ -84,6 +89,19 @@ public class Board extends JPanel {
         Wall    wall;
         Baggage b;
         Area    a;
+
+        if (timer != null){
+            timer.stop();
+        }
+
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                seconds++;
+                repaint();
+            }
+        });
+        timer.start();
 
         for (int i = 0; i < level.length(); i++) {
 
@@ -161,6 +179,7 @@ public class Board extends JPanel {
             }
 
             g.setColor(new Color(0, 0, 0));
+            g.drawString("Timer : " + seconds + " sec", getBoardWidth() + OFFSET, 20);
             g.drawString("Moves : " + moveCount + " / " + MAX_MOVE, getBoardWidth() + OFFSET, 50);
 
             if (isCompleted) {
@@ -611,4 +630,5 @@ public class Board extends JPanel {
                 break;
         }
     }
+
 }
