@@ -1,8 +1,7 @@
 package com.zetcode;
 
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.JFrame;
 
 import javax.swing.JFrame;
 
@@ -10,12 +9,14 @@ public class Sokoban extends JFrame {// main Ŭ����
 
 	final static int FRAME_WIDTH = 500;
 	final static int FRAME_HIGHT = 500;
-	
+
 	private final int OFFSET = 30;
 	private final String LOGINPANEl_NAME = "loginPanel";
 	private final String INTROPANEL_NAME = "introPanel";
 	private final String GAMEPANEL_NAME = "gamePanel";
 	private final String BASICPANEL_NAME = "basicPanel";
+	private final String HIDEPANEL_NAME = "hidePanel";
+	private final String PUTINORDERPANEL_NAME = "putinorderPanel";
 
 	private CardLayout cards;
 
@@ -35,13 +36,15 @@ public class Sokoban extends JFrame {// main Ŭ����
 		setTitle("Sokoban");
 		this.cards = new CardLayout();
 		getContentPane().setLayout(cards);
-		setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HIGHT));// 프레임 창크기설정
-//		setResizable(false);// 사이즈조절x
-		pack();// 컴포넌트크기만큼 창 크기, 왜 패널에서 사이즈를 정해야하지??
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
-		getContentPane().add(this.getIntroPanelName(), new IntroPanel());//??
+		getContentPane().add(this.getIntroPanelName(), new IntroPanel(this));
+		getContentPane().add(this.getGamePanelName(), new GamePanel(this));
+		getContentPane().add(this.getBasicPanelName(), new BasicPanel(this));
+		getContentPane().add(this.getHidePanelName(), new HidePanel(this));
+		getContentPane().add(this.getPutInOrderPanelName(), new PutInOrderPanel(this));
+
 	}
 
 	public String getLoginPanelName() {
@@ -55,11 +58,19 @@ public class Sokoban extends JFrame {// main Ŭ����
 	public String getGamePanelName() {
 		return GAMEPANEL_NAME;
 	}
-	
+
 	public String getBasicPanelName() {
 		return BASICPANEL_NAME;
 	}
-	
+
+	public String getHidePanelName() {
+		return HIDEPANEL_NAME;
+	}
+
+	public String getPutInOrderPanelName() {
+		return PUTINORDERPANEL_NAME;
+	}
+
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(() -> {

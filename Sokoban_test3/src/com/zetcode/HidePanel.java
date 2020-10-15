@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class HidePanel extends JPanel{
 	Image image;
 	
-	public HidePanel() {
+	public HidePanel(Sokoban sokoban) {
 		this.add(new Label("HIDE MODE"));
 		image = Toolkit.getDefaultToolkit().getImage("IntroBackground_2.jpg");
 	} 

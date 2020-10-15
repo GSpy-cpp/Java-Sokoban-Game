@@ -11,12 +11,10 @@ import javax.swing.JPanel;
 
 public class BasicPanel extends JPanel {
 	Image image;
-	viewController controller;
 	
-	public BasicPanel(viewController controller) {
+	public BasicPanel(Sokoban sokoban) {
 		BasicKeyEvent handler = new BasicKeyEvent(this);
 		image = Toolkit.getDefaultToolkit().getImage("IntroBackground_2.jpg");
-		this.controller = controller;
 		
 		JButton btn1 = new JButton("1LEVEL");
 		add(btn1);
@@ -52,23 +50,23 @@ public class BasicPanel extends JPanel {
 		g.drawString("<< CHOICE A LEVEL >>",125, 70);
 	}
 	
-	public void level1_Start() {
-		controller.basic_leven1();
-	}
-	
-	public void level2_Start() {
-		controller.basic_leven2();
-	}
-	
-	public void level3_Start() {
-		controller.basic_leven3();
-	}
-	
-	public void level4_Start() {
-		controller.basic_leven4();
-	}
-	
-	public void level5_Start() {
-		controller.basic_leven5();
-	}
+//	public void level1_Start() {
+//		controller.basic_leven1();
+//	}
+//	
+//	public void level2_Start() {
+//		controller.basic_leven2();
+//	}
+//	
+//	public void level3_Start() {
+//		controller.basic_leven3();
+//	}
+//	
+//	public void level4_Start() {
+//		controller.basic_leven4();
+//	}
+//	
+//	public void level5_Start() {
+//		controller.basic_leven5();
+//	}
 }

@@ -22,7 +22,9 @@ public class IntroPanel extends JPanel {
 
 	Sokoban sokoban;
 
-	public IntroPanel() {
+	public IntroPanel(Sokoban sokoban) {
+		setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HIGHT));// 프레임 창크기설정
+		pack();// 컴포넌트크기만큼 창 크기
 		intro_image = Toolkit.getDefaultToolkit().getImage("IntroBackground_2.jpg");
 
 		IntroKeyEvent handler = new IntroKeyEvent(this);
@@ -42,6 +44,7 @@ public class IntroPanel extends JPanel {
 
 		setLayout(null);
 	}
+
 
 	@Override
 	public void paint(Graphics g) {
