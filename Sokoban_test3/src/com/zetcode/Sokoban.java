@@ -1,38 +1,72 @@
 package com.zetcode;
 
+import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 
-public class Sokoban extends JFrame {//main Å¬·¡½º
+public class Sokoban extends JFrame {// main Å¬ï¿½ï¿½ï¿½ï¿½
 
-	private static final long serialVersionUID = 1L;
+	final static int FRAME_WIDTH = 500;
+	final static int FRAME_HIGHT = 500;
 	
 	private final int OFFSET = 30;
+	private final String LOGINPANEl_NAME = "loginPanel";
+	private final String INTROPANEL_NAME = "introPanel";
+	private final String GAMEPANEL_NAME = "gamePanel";
+	private final String BASICPANEL_NAME = "basicPanel";
 
-    public Sokoban() {
+	private CardLayout cards;
 
-        initUI();
-    }
+	public Sokoban() {
+		initUI();
+	}
 
-    private void initUI() {
-        
-        Board board = new Board();
-        add(board);
+	// public void changePanel(String name)
+	// Panelì—ì„œ í˜¸ì¶œë˜ëŠ” ë©”ì†Œë“œ
+	// JFrameì— í‘œì‹œë˜ëŠ” Panelì„ ë°”ê¿€ ë•Œ ì‚¬ìš©
+	// ì‚¬ìš©ì˜ˆ : frame.changePanel(frame.getLobbyPanelName());
+	public void changePanel(String name) {
+		this.cards.show(this.getContentPane(), name);
+	}
 
-        setTitle("Sokoban");
-        
-        setSize(board.getBoardWidth() + OFFSET, board.getBoardHeight() + 2 * OFFSET);
-        
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-    }
+	private void initUI() {
+		setTitle("Sokoban");
+		this.cards = new CardLayout();
+		getContentPane().setLayout(cards);
+		setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HIGHT));// í”„ë ˆìž„ ì°½í¬ê¸°ì„¤ì •
+//		setResizable(false);// ì‚¬ì´ì¦ˆì¡°ì ˆx
+		pack();// ì»´í¬ë„ŒíŠ¸í¬ê¸°ë§Œí¼ ì°½ í¬ê¸°, ì™œ íŒ¨ë„ì—ì„œ ì‚¬ì´ì¦ˆë¥¼ ì •í•´ì•¼í•˜ì§€??
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 
-    public static void main(String[] args) {
-    	//SwingÄÄÆ÷³ÍÆ®·ÎÀÇ ¸ðµç Á¢±ÙÀÌ ´ÜÀÏ ¾²·¹µå¿¡¼­¸¸ ÀÌ·ç¾îÁ®¾ßÇÑ´Ù = event-dispatch thread
-    	//event-dispatch thread ÀÇ ÅÂ½ºÅ©¸¦ ½ÇÇàÇØ¾ßÇÏÁö¸¸ °á°ú°ªÀÌ ÇÊ¿äÇÏÁö¾Ê°í ÅÂ½ºÅ©°¡ ¾ðÁ¦ ³¡³ª´ø »ó°ü¾ø´Ù¸é, EventQueueÀÇ public static void invokeLater(Runnable runnable) ¸Þ¼Òµå¸¦ »ç¿ë 
-        EventQueue.invokeLater(() -> {
-            Sokoban game = new Sokoban();
-            game.setVisible(true);
-        });
-    }
+		getContentPane().add(this.getIntroPanelName(), new IntroPanel());//??
+	}
+
+	public String getLoginPanelName() {
+		return LOGINPANEl_NAME;
+	}
+
+	public String getIntroPanelName() {
+		return INTROPANEL_NAME;
+	}
+
+	public String getGamePanelName() {
+		return GAMEPANEL_NAME;
+	}
+	
+	public String getBasicPanelName() {
+		return BASICPANEL_NAME;
+	}
+	
+	public static void main(String[] args) {
+
+		EventQueue.invokeLater(() -> {
+
+			Sokoban game = new Sokoban();
+			game.setVisible(true);
+		});
+	}
+
 }

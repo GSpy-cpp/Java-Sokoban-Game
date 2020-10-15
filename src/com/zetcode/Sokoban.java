@@ -8,6 +8,7 @@ public class Sokoban extends JFrame {
     private final int    OFFSET          = 30;
     private final String LOGINPANEl_NAME = "loginPanel";
     private final String LOBBYPANEL_NAME = "lobbyPanel";
+    private final String GAMEPANEL_NAME = "gamePanel";
 
     private CardLayout cards;
 
@@ -49,4 +50,10 @@ public class Sokoban extends JFrame {
     public String getLobbyPanelName() {
         return LOBBYPANEL_NAME;
     }
+    
+    public String getGamePanelName() {//
+    	return GAMEPANEL_NAME;
+    }
+    
+    
 }

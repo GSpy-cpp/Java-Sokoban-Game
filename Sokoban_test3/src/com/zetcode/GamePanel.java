@@ -1,28 +1,31 @@
 package com.zetcode;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
+	final static int FRAME_WIDTH = 500;
+	final static int FRAME_HIGHT = 500;
 	Image image;
-	viewController controller;
+	
+	Sokoban sokoban;
 
-	public GamePanel(viewController controller) {
+	public GamePanel() {
 		image = Toolkit.getDefaultToolkit().getImage("IntroBackground_2.jpg");
 
-		this.controller = controller;
 		GameKeyEvent handler = new GameKeyEvent(this);// 이벤트 리스너 객체
-//		this.addListener(new GameKeyEvent(this));
-//		this.actionPerformed(new GameKeyEvent(this));
+		
+		setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HIGHT));// 프레임 창크기설정
 
-//		JButton btn1 = new JButton(new ImageIcon("btn2.png"));
+		sokoban.changePanel(sokoban.getGamePanelName());
+
 		JButton btn1 = new JButton("1번");
 		add(btn1);
 		JButton btn2 = new JButton("2번");
@@ -60,18 +63,18 @@ public class GamePanel extends JPanel {
 	}
 
 	public void basicStart() {
-		controller.showBasicPanel();// 새패널보여주기
+		sokoban.changePanel(sokoban.getBasicPanelName());
 	}
-
-	public void hideStart() {
-		controller.showHidePanel();
-	}
-
-	public void gaugeStart() {
-		controller.showGaugePanel();
-	}
-
-	public void putinStart() {
-		controller.showPutInPanel();
-	}
+//
+//	public void hideStart() {
+//		controller.showHidePanel();
+//	}
+//
+//	public void gaugeStart() {
+//		controller.showGaugePanel();
+//	}
+//
+//	public void putinStart() {
+//		controller.showPutInPanel();
+//	}
 }

@@ -15,12 +15,13 @@ public class GameKeyEvent implements ActionListener {
 		// TODO Auto-generated method stub
 		if (e.getActionCommand() == "1번") {
 			gamePanel.basicStart();
-		} else if (e.getActionCommand() == "2번") {
-			gamePanel.hideStart();
-		} else if (e.getActionCommand() == "3번") {
-			gamePanel.gaugeStart();
-		} else
-			gamePanel.putinStart();
+		}
+//		} else if (e.getActionCommand() == "2번") {
+//			gamePanel.hideStart();
+//		} else if (e.getActionCommand() == "3번") {
+//			gamePanel.gaugeStart();
+//		} else
+//			gamePanel.putinStart();
 
 	}
 
