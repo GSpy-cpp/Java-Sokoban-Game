@@ -7,6 +7,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -64,5 +67,25 @@ public class IntroPanel extends JPanel {
 
 	public void gameStart() {
 		sokoban.changePanel(sokoban.getGamePanelName());
+	}
+
+	public int getBestScore() {
+		File userfile = new File("src/resources/user");     // user 파일에서 데이터를 가져옴.
+		int minScore = Integer.MAX_VALUE;
+		try {
+			Scanner scan = new Scanner(userfile);
+
+			while (scan.hasNextLine()) {
+				String[] userInfo = scan.nextLine().split("-");// 파일을 한줄 읽어옴.
+				int scoreBuffer = Integer.valueOf(userInfo[2]);      // 점수 부분을 분리해서
+				if (scoreBuffer < minScore) {
+					minScore = scoreBuffer;                          // 최솟값을 구함.
+				}
+			}
+
+		} catch (FileNotFoundException e) {                          // 예외처리
+			System.out.println("FileNotFoundException");
+		}
+		return minScore;                                             // 최솟값 리턴
 	}
 }
