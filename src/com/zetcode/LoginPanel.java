@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginPanel extends JPanel {
-    private JFrame     frame;
+    private Sokoban    frame;
     private JLabel     IDLabel;
     private JTextField IDTextField;
     private JLabel     passwordLabel;
@@ -24,24 +24,24 @@ public class LoginPanel extends JPanel {
     private int getFrameWidth()  { return 2*LEFTRIGHT_SPACE + LABEL_WIDTH + TEXTFIELD_WIDTH + 2*LOGINBTN_SPACE + LOGINBTN_SIZE + 20; }
     private int getFrameHeight() { return 2*TOPBOTTOM_SPACE + 2*TEXTFIELD_HEIGHT + 40; }
 
-    public LoginPanel(JFrame frame) {
+    public LoginPanel(Sokoban frame) {
         initLoginUI();
         this.frame = frame;
         frame.setTitle("Login");
-        /*
+
         loginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String id       = IDTextField.getText();
                 String password = passwordTextField.getText();
-                if (this.isValidUser(id, password)) {
+                if (isValidUser(id, password)) { // 로그인에 성공한 경우
                     frame.changePanel(frame.getLobbyPanelName());
                 } else {
 
                 }
             }
         });
-        */
+
         this.add(IDLabel);
         this.add(IDTextField);
         this.add(passwordLabel);
@@ -74,10 +74,10 @@ public class LoginPanel extends JPanel {
                             TOPBOTTOM_SPACE+LOGINBTN_SPACE,
                             LOGINBTN_SIZE, LOGINBTN_SIZE);
     }
-    /*
-    private boolean isValidUser(String id, String password) {
 
+    private boolean isValidUser(String id, String password) {
+        return true;
     }
 
-     */
+
 }
