@@ -11,12 +11,14 @@ import javax.swing.*;
 
 public class Board extends JPanel {
 
-    protected final int OFFSET           = 30;
-    protected final int SPACE            = 20;
-    protected final int LEFT_COLLISION   = 1;
-    protected final int RIGHT_COLLISION  = 2;
-    protected final int TOP_COLLISION    = 3;
-    protected final int BOTTOM_COLLISION = 4;
+	private static final long serialVersionUID = 1L;
+
+	private final int OFFSET = 30;//������ â�� �׵θ��� ���� ������ ���� �Ÿ�
+    private final int SPACE = 20;//20*20px(�� �̹��� ������)
+    private final int LEFT_COLLISION = 1;//���� �浹
+    private final int RIGHT_COLLISION = 2;//������ �浹
+    private final int TOP_COLLISION = 3;//��� �浹
+    private final int BOTTOM_COLLISION = 4;//�ϴ� �浹
     protected final int MAX_MOVE         = 300;
     protected final int LEFT_DIRECTION   = 1;
     protected final int RIGHT_DIRECTION  = 2;
@@ -54,6 +56,25 @@ public class Board extends JPanel {
             + "###### ### #@##  ..#\n"
             + "    ##     #########\n"
             + "    ########\n";
+//    		"##################################"
+//    		+"# #   #                   #  #   #"
+//    		+"#.\*     * * * * * * * * *      **#"
+//    		+"#  ############################  #"
+//    		+"## #     .       #            #  #"
+//    		+"#  # *********  ** ########## # ##"
+//    		+"#  #.*   @   *.$#  $          #  #"
+//    		+"## # *********  ** ########## #  #"
+//    		+"#  ##    .       #          $ # ##"
+//    		+"#. $ $##########  ##########$    #"
+//    		+"## ##.... . . . #$          $ #  #"
+//    		+"#  # .........   . ########## # ##"
+//    		+"#  #...... . ..  # $          #  #"
+//    		+"## # .........  ## ########## #  #"
+//    		+"#  # .... . . . #             # ##"
+//    		+"#  ############################  #"
+//    		+"#**      * * * * * * * * *     *.#"
+//    		+"#   #  #                   #   # #"
+//    		+"##################################";
 
     public Board(Sokoban f) {
         this.frame = f;
@@ -83,7 +104,7 @@ public class Board extends JPanel {
         bagMoveStack    = new CircleStack<>(10);
         moveCount       = 0;
         seconds         = 0;
-        
+
         walls = new ArrayList<>();
         baggs = new ArrayList<>();
         areas = new ArrayList<>();
@@ -110,7 +131,7 @@ public class Board extends JPanel {
 
         for (int i = 0; i < level.length(); i++) {
 
-            char item = level.charAt(i);
+            char item = level.charAt(i);//���ڿ����� ���ڷ� �־��� ���� �ش��ϴ� ���ڸ� �����Ѵ�.
 
             switch (item) {
 
@@ -132,8 +153,8 @@ public class Board extends JPanel {
 
                 case '$':
                     b = new Baggage(x, y);
-                    baggs.add(b);
-                    x += SPACE;
+                    baggs.add(b);//baggs�����̳ʿ� b�߰�
+                    x += SPACE;//x��ġ�� 20��ŭ ���Ѵ�.
                     break;
 
                 case '.':
@@ -159,21 +180,22 @@ public class Board extends JPanel {
         }
     }
 
-    protected void buildWorld(Graphics g) {
+    private void buildWorld(Graphics g) {
+    	//������ �����쿡 �׸���.
 
         g.setColor(new Color(250, 240, 170));
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-
+        //��ǥ (0,0)�� ũ�⸸ŭ �簢���� �׸���.
         ArrayList<Actor> world = new ArrayList<>();
-
+        //world = ������ ��� ��ü�� ����
         world.addAll(walls);
         world.addAll(areas);
         world.addAll(baggs);
         world.add(soko);
-
+        //�����̳ʸ� ���� �ݺ��ؼ� ��ü�� �׸���. �÷��̾�� baggage�̹������� ���� �۾Ƽ� ��ǥ�� 2px�� ���ؼ� �߽��� ��´�.
         for (int i = 0; i < world.size(); i++) {
 
-            Actor item = world.get(i);
+            Actor item = world.get(i);//�����̳ʵ��� �ݺ��ؼ� ������.
 
             if (item instanceof Player || item instanceof Baggage) {
                 
@@ -201,8 +223,8 @@ public class Board extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
+        super.paintComponent(g);//super�� �θ� Ŭ�����κ��� ��ӹ��� �ʵ峪 �޼ҵ带 �ڽ� Ŭ�������� �����ϴ� �� ����ϴ� ���� ����
+        //������Ʈ�� �׸����� �ϴ� ��������, ũ�Ⱑ ����ǰų� ��ġ�� ����ǰų� ������Ʈ�� �������� ���� ������� ��
         buildWorld(g);
     }
 
@@ -213,6 +235,12 @@ public class Board extends JPanel {
 
             if (isCompleted) {
                 return;
+                //1. �ǵ�����
+                //����� ���ؿ��� �ڵ��� ��������� �����Ǵ� �κ�
+                //2. �ƹ��͵� ���°���
+                //���ÿ� � ���� �������� �ʴ°��� �ǹ�
+                //3. ������ ��
+                //�����Ϸ����� ������ �������� ���ο� ������ �ؼ��� �غ��Ұ��� �˷��ش�.
             }
             if (moveCount == MAX_MOVE) {
                 return;
@@ -220,12 +248,11 @@ public class Board extends JPanel {
 
             int key = e.getKeyCode();
 
-            switch (key) {
-                
+            switch (key) {//� Ű�� ���������� Ȯ���Ѵ�. �츮�� cursorŰ�� ���� ���ڹݹ�ü�� �����Ѵ�.
+            	//������ �����ٸ�, ���ڹ��� wall�̳� baggage�� �浹�ߴ��� üũ�Ѵ�. �浹���� �ʾҴٸ�, ���ڹ��� �������� �ű��.
                 case KeyEvent.VK_LEFT:
-                    
-                    if (checkWallCollision(soko,
-                            LEFT_COLLISION)) {
+                	
+                    if (checkWallCollision(soko, LEFT_COLLISION)) {
                         return;
                     }
                     
@@ -236,7 +263,7 @@ public class Board extends JPanel {
                     soko.move(-SPACE, 0);
                     playerMoveStack.push(KeyEvent.VK_LEFT);
                     moveCount++;
-                    
+
                     break;
                     
                 case KeyEvent.VK_RIGHT:
@@ -252,7 +279,7 @@ public class Board extends JPanel {
                     soko.move(SPACE, 0);
                     playerMoveStack.push(KeyEvent.VK_RIGHT);
                     moveCount++;
-                    
+
                     break;
                     
                 case KeyEvent.VK_UP:
@@ -268,7 +295,7 @@ public class Board extends JPanel {
                     soko.move(0, -SPACE);
                     playerMoveStack.push(KeyEvent.VK_UP);
                     moveCount++;
-                    
+
                     break;
                     
                 case KeyEvent.VK_DOWN:
@@ -284,13 +311,12 @@ public class Board extends JPanel {
                     soko.move(0, SPACE);
                     playerMoveStack.push(KeyEvent.VK_DOWN);
                     moveCount++;
-                    
+
                     break;
                     
-                case KeyEvent.VK_R:
+                case KeyEvent.VK_R://RŰ�� ������ ������ ������Ѵ�.
                     
                     restartLevel();
-
                     
                     break;
 
@@ -303,12 +329,12 @@ public class Board extends JPanel {
                     undo(playerMoveStack.pop());
 
                     break;
-
+                    
                 default:
                     break;
             }
 
-            repaint();
+            repaint();//ȭ���� �ٽ� �׷������� ��û
         }
     }
 
@@ -324,11 +350,11 @@ public class Board extends JPanel {
                     
                     if (actor.isLeftCollision(wall)) {
                         
-                        return true;
+                        return true;//����
                     }
                 }
                 
-                return false;
+                return false;//����
                 
             case RIGHT_COLLISION:
                 
@@ -378,7 +404,9 @@ public class Board extends JPanel {
         return false;
     }
 
-    protected boolean checkBagCollision(int type) {
+    private boolean checkBagCollision(int type) {
+    	//baggage�� ��, ���ڹ�  ��ü �Ǵ� �ٸ� baggage�� �浹�� �� �ִ�. �ٸ� ��ü�� �浹���� �ʾƾ� baggage �ű�� ����
+    	//baggage �ű涧�� isCompleted()�� ���� ������ �������� Ȯ���� ����.
 
         boolean bagMovedFlag = false;
 
@@ -396,14 +424,14 @@ public class Board extends JPanel {
                             
                             Baggage item = baggs.get(j);
                             
-                            if (!bag.equals(item)) {
+                            if (!bag.equals(item)) {//baggage�� baggage�� �浹�� ��
                                 
                                 if (bag.isLeftCollision(item)) {
                                     return true;
                                 }
                             }
                             
-                            if (checkWallCollision(bag, LEFT_COLLISION)) {
+                            if (checkWallCollision(bag, LEFT_COLLISION)) {//baggage�� ���� �浹�� ��
                                 return true;
                             }
                         }
@@ -537,7 +565,8 @@ public class Board extends JPanel {
     }
 
     public void isCompleted() {
-
+    	//������ �������� Ȯ���Ѵ�.
+    	//baggage�� ���� ���� �� �ִ�. ��� baggage�� (x,y)��ǥ�� �������� ���Ѵ�.
         int nOfBags = baggs.size();
         int finishedBags = 0;
 
@@ -556,14 +585,14 @@ public class Board extends JPanel {
             }
         }
 
-        if (finishedBags == nOfBags) {
+        if (finishedBags == nOfBags) {//finishedBags�� nOfBags(���� �� baggage��)�� ���� �� ������ ����ȴ�.
             
             isCompleted = true;
             repaint();
         }
     }
 
-    protected void restartLevel() {
+    protected void restartLevel() {//�����
 
         areas.clear();
         baggs.clear();

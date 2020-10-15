@@ -3,7 +3,7 @@ package com.zetcode;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-public class Wall extends Actor {
+public class Wall extends Actor {//Actor클래스를 상속받는다.
 
     private Image image;
 
@@ -13,7 +13,7 @@ public class Wall extends Actor {
         initWall();
     }
     
-    private void initWall() {
+    private void initWall() {//벽 이미지 로드
         
         ImageIcon iicon = new ImageIcon("src/resources/wall.png");
         image = iicon.getImage();

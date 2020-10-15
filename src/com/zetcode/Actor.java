@@ -45,7 +45,7 @@ public class Actor {
     }
 
     public boolean isLeftCollision(Actor actor) {
-        
+    	//actor가 왼쪽으로 다른 actor(wall,baggage,sokoban)과 충돌하는지 확인한다.
         return x() - SPACE == actor.x() && y() == actor.y();
     }
 
