@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class LoginPanel extends JPanel {
     private Sokoban    frame;
@@ -34,10 +37,11 @@ public class LoginPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String id       = IDTextField.getText();
                 String password = passwordTextField.getText();
-                if (isValidUser(id, password)) { // 로그인에 성공한 경우
-                    frame.changePanel(frame.getIntroPanelName());
+                if (isValidUser(id, password)) {                 // 로그인에 성공한 경우 실행되는 코드
+                    frame.changePanel(frame.getIntroPanelName());// ******** 수정 필요함 ********
+                                                                 // 로그인에 성공한 경우 실행되는 코드
                 } else {
-
+                    System.out.println("login failed");
                 }
             }
         });
@@ -76,8 +80,28 @@ public class LoginPanel extends JPanel {
     }
 
     private boolean isValidUser(String id, String password) {
-        return true;
-    }
+        try {
+            File usrFile = new File("src/resources/user");
+            Scanner scan = new Scanner(usrFile);
+            String[] usrInfo;
+            while (scan.hasNextLine()) {
+                usrInfo = scan.nextLine().split("-");
 
+                if (usrInfo[0].equals(id) && usrInfo[1].equals(password)) {
+                    scan.close();
+                    return true;
+                }
+
+            }
+
+            scan.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("FileNotFoundException");
+        }
+
+            return false;
+
+    }
 
 }
