@@ -31,6 +31,7 @@ public class Sokoban extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        // 사용되는 panel을 모두 add 해야 함.
         getContentPane().add(this.getLoginPanelName(), new LoginPanel(this));
     }
 
