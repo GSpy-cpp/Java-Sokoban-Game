@@ -13,12 +13,12 @@ public class Board extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private final int OFFSET = 30;//������ â�� �׵θ��� ���� ������ ���� �Ÿ�
-    private final int SPACE = 20;//20*20px(�� �̹��� ������)
-    private final int LEFT_COLLISION = 1;//���� �浹
-    private final int RIGHT_COLLISION = 2;//������ �浹
-    private final int TOP_COLLISION = 3;//��� �浹
-    private final int BOTTOM_COLLISION = 4;//�ϴ� �浹
+    protected final int OFFSET = 30;//������ â�� �׵θ��� ���� ������ ���� �Ÿ�
+    protected final int SPACE = 20;//20*20px(�� �̹��� ������)
+    protected final int LEFT_COLLISION = 1;//���� �浹
+    protected final int RIGHT_COLLISION = 2;//������ �浹
+    protected final int TOP_COLLISION = 3;//��� �浹
+    protected final int BOTTOM_COLLISION = 4;//�ϴ� �浹
     protected final int MAX_MOVE         = 300;
     protected final int LEFT_DIRECTION   = 1;
     protected final int RIGHT_DIRECTION  = 2;
@@ -180,7 +180,7 @@ public class Board extends JPanel {
         }
     }
 
-    private void buildWorld(Graphics g) {
+    protected void buildWorld(Graphics g) {
     	//������ �����쿡 �׸���.
 
         g.setColor(new Color(250, 240, 170));
@@ -404,7 +404,7 @@ public class Board extends JPanel {
         return false;
     }
 
-    private boolean checkBagCollision(int type) {
+    protected boolean checkBagCollision(int type) {
     	//baggage�� ��, ���ڹ�  ��ü �Ǵ� �ٸ� baggage�� �浹�� �� �ִ�. �ٸ� ��ü�� �浹���� �ʾƾ� baggage �ű�� ����
     	//baggage �ű涧�� isCompleted()�� ���� ������ �������� Ȯ���� ����.
 
