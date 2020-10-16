@@ -60,7 +60,7 @@ public class IntroPanel extends JPanel {
 		g.drawString("sokoban", 115, 130);
 		g.setFont(new Font("myFont", Font.BOLD, 20));
 		g.setColor(Color.blue);
-		g.drawString("BEST SCORE : " + bestscore, 145, 250);
+		g.drawString("BEST SCORE : " + getBestScore(), 145, 250);
 		g.setFont(new Font("secondFont", Font.BOLD, 20));
 		g.setColor(Color.red);
 	}
