@@ -95,6 +95,10 @@ public class Sokoban extends JFrame {// main Ŭ����
 		return PUTINORDERPANEL_NAME;
 	}
 
+	public String getGaugePanelName() {
+		return GAUGEPANEL_NAME;
+	}
+
 	public String getUserid() { return this.userid; }
 
 	public void setUserid(String id) { this.userid = id; }
