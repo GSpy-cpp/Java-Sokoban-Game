@@ -64,9 +64,6 @@ public class Sokoban extends JFrame {// main Ŭ����
 		if (name.equals(HIDEPANEL_NAME)) {
 			getContentPane().add(new HideSightPanel(this));
 		}
-		if (name.equals(PUTINORDERPANEL_NAME)) {
-			getContentPane().add(new PutInOrderPanel(this));
-		}
 		if (name.equals(GAUGEPANEL_NAME)) {
 			getContentPane().add(new GaugePanel(this));
 		}
