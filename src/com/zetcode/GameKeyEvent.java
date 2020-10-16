@@ -12,17 +12,15 @@ public class GameKeyEvent implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+
+		Sokoban frame = gamePanel.sokoban;
+
 		if (e.getActionCommand() == "1번") {
-			gamePanel.basicStart();
+			frame.changePanel(frame.getBasicPanelName());
+		} else if (e.getActionCommand() == "2번") {
+			frame.changePanel(frame.getHidePanelName());
+		} else if (e.getActionCommand() == "3번") {
+			frame.changePanel(frame.getGaugePanelName());
 		}
-//		} else if (e.getActionCommand() == "2번") {
-//			gamePanel.hideStart();
-//		} else if (e.getActionCommand() == "3번") {
-//			gamePanel.gaugeStart();
-//		} else
-//			gamePanel.putinStart();
-
 	}
-
 }
