@@ -11,10 +11,13 @@ import javax.swing.JPanel;
 
 public class BasicPanel extends JPanel {
 	Image image;
+	Sokoban frame;
 	
 	public BasicPanel(Sokoban sokoban) {
+		frame = sokoban;
+
 		BasicKeyEvent handler = new BasicKeyEvent(this);
-		image = Toolkit.getDefaultToolkit().getImage("IntroBackground_2.jpg");
+		image = Toolkit.getDefaultToolkit().getImage("src/resources/IntroBackground_2.jpg");
 		
 		JButton btn1 = new JButton("1LEVEL");
 		add(btn1);
@@ -38,7 +41,9 @@ public class BasicPanel extends JPanel {
 		btn3.setBounds(185,230,100,40);
 		btn4.setBounds(185,290,100,40);
 		btn5.setBounds(185,350,100,40);
-		
+
+		setSize(500, 500);
+		frame.setLocationRelativeTo(null);
 		setLayout(null);
 	}
 	
@@ -50,23 +55,23 @@ public class BasicPanel extends JPanel {
 		g.drawString("<< CHOICE A LEVEL >>",125, 70);
 	}
 	
-//	public void level1_Start() {
-//		controller.basic_leven1();
-//	}
-//	
-//	public void level2_Start() {
-//		controller.basic_leven2();
-//	}
-//	
-//	public void level3_Start() {
-//		controller.basic_leven3();
-//	}
-//	
-//	public void level4_Start() {
-//		controller.basic_leven4();
-//	}
-//	
-//	public void level5_Start() {
-//		controller.basic_leven5();
-//	}
+	public void level1_Start() {
+		frame.changePanel(frame.getBoardPanel1Name());
+	}
+
+	public void level2_Start() {
+		frame.changePanel(frame.getBoardPanel2Name());
+	}
+
+	public void level3_Start() {
+		frame.changePanel(frame.getBoardPanel3Name());
+	}
+
+	public void level4_Start() {
+		frame.changePanel(frame.getBoardPanel4Name());
+	}
+
+	public void level5_Start() {
+		frame.changePanel(frame.getBoardPanel5Name());
+	}
 }

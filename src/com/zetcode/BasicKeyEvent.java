@@ -12,7 +12,7 @@ public class BasicKeyEvent implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+
 		if (e.getActionCommand() == "1LEVEL") {
 			basicPanel_level.level1_Start();
 		} else if (e.getActionCommand() == "2LEVEL") {

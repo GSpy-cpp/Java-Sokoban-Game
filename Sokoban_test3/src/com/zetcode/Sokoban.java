@@ -3,8 +3,6 @@ package com.zetcode;
 import java.awt.*;
 import javax.swing.JFrame;
 
-import javax.swing.JFrame;
-
 public class Sokoban extends JFrame {// main Ŭ����
 
 	final static int FRAME_WIDTH = 500;
@@ -41,7 +39,7 @@ public class Sokoban extends JFrame {// main Ŭ����
 
 		getContentPane().add(this.getIntroPanelName(), new IntroPanel(this));
 		getContentPane().add(this.getGamePanelName(), new GamePanel(this));
-		getContentPane().add(this.getBasicPanelName(), new BasicPanel(this));
+		getContentPane().add(this.getBasicPanel1Name(), new BasicPanel(this));
 		getContentPane().add(this.getHidePanelName(), new HidePanel(this));
 		getContentPane().add(this.getPutInOrderPanelName(), new PutInOrderPanel(this));
 

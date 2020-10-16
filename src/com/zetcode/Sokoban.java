@@ -13,6 +13,11 @@ public class Sokoban extends JFrame {// main Ŭ����
 	private final String INTROPANEL_NAME      = "introPanel";
 	private final String GAMEPANEL_NAME       = "gamePanel";
 	private final String BASICPANEL_NAME      = "basicPanel";
+	private final String BOARDPANEL1_NAME     = "boardPanel1";
+	private final String BOARDPANEL2_NAME     = "boardPanel2";
+	private final String BOARDPANEL3_NAME     = "boardPanel3";
+	private final String BOARDPANEL4_NAME     = "boardPanel4";
+	private final String BOARDPANEL5_NAME     = "boardPanel5";
 	private final String HIDEPANEL_NAME       = "hidePanel";
 	private final String PUTINORDERPANEL_NAME = "putinorderPanel";
 	private final String GAUGEPANEL_NAME      = "gaugePanel";
@@ -41,6 +46,21 @@ public class Sokoban extends JFrame {// main Ŭ����
 		if (name.equals(BASICPANEL_NAME)) {
 			getContentPane().add(new BasicPanel(this));
 		}
+		if (name.equals(BOARDPANEL1_NAME)) {
+			getContentPane().add(new Board(this, 1));
+		}
+		if (name.equals(BOARDPANEL2_NAME)) {
+			getContentPane().add(new Board(this, 2));
+		}
+		if (name.equals(BOARDPANEL3_NAME)) {
+			getContentPane().add(new Board(this, 3));
+		}
+		if (name.equals(BOARDPANEL4_NAME)) {
+			getContentPane().add(new Board(this, 4));
+		}
+		if (name.equals(BOARDPANEL5_NAME)) {
+			getContentPane().add(new Board(this, 5));
+		}
 		if (name.equals(HIDEPANEL_NAME)) {
 			getContentPane().add(new HideSightPanel(this));
 		}
@@ -61,13 +81,8 @@ public class Sokoban extends JFrame {// main Ŭ����
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
-		// 사용되는 panel을 모두 add 해야 함.
 		getContentPane().add(this.getLoginPanelName(), new LoginPanel(this));
-//		getContentPane().add(this.getIntroPanelName(), new IntroPanel(this));
-//		getContentPane().add(this.getGamePanelName(), new GamePanel(this));
-//		getContentPane().add(this.getBasicPanelName(), new BasicPanel(this));
-//		getContentPane().add(this.getHidePanelName(), new HidePanel(this));
-//		getContentPane().add(this.getPutInOrderPanelName(), new PutInOrderPanel(this));
+
 
 	}
 
@@ -85,6 +100,21 @@ public class Sokoban extends JFrame {// main Ŭ����
 
 	public String getBasicPanelName() {
 		return BASICPANEL_NAME;
+	}
+	public String getBoardPanel1Name() {
+		return BOARDPANEL1_NAME;
+	}
+	public String getBoardPanel2Name() {
+		return BOARDPANEL2_NAME;
+	}
+	public String getBoardPanel3Name() {
+		return BOARDPANEL3_NAME;
+	}
+	public String getBoardPanel4Name() {
+		return BOARDPANEL4_NAME;
+	}
+	public String getBoardPanel5Name() {
+		return BOARDPANEL5_NAME;
 	}
 
 	public String getHidePanelName() {

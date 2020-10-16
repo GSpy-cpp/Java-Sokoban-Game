@@ -61,28 +61,64 @@ public class Board extends JPanel {
             + "###### ### #@##  ..#\n"
             + "    ##     #########\n"
             + "    ########\n";
-//    protected String level2
-//    		="##################################\n"
-//    		+"# #   #                   #  #   #\n"
-//    		+"#.\*     * * * * * * * * *      **#\n"
-//    		+"#  ############################  #\n"
-//    		+"## #     .       #            #  #\n"
-//    		+"#  # *********  ** ########## # ##\n"
-//    		+"#  #.*   @   *.$#  $          #  #\n"
-//    		+"## # *********  ** ########## #  #\n"
-//    		+"#  ##    .       #          $ # ##\n"
-//    		+"#. $ $##########  ##########$    #\n"
-//    		+"## ##.... . . . #$          $ #  #\n"
-//    		+"#  # .........   . ########## # ##\n"
-//    		+"#  #...... . ..  # $          #  #\n"
-//    		+"## # .........  ## ########## #  #\n"
-//    		+"#  # .... . . . #             # ##\n"
-//    		+"#  ############################  #\n"
-//    		+"#**      * * * * * * * * *     *.#\n"
-//    		+"#   #  #                   #   # #\n"
-//    		+"##################################\n";
 
-//    protected String level3
+    protected String level2
+            ="   #####\n"
+            +"####   #\n"
+            +"#  #$  #####\n"
+            +"# $$       #\n"
+            +"#@   #$ $# #\n"
+            +"###  #   # #\n"
+            +" #   ##### #\n"
+            +" #   ..... #\n"
+            +" ###########\n";
+
+    protected String level3
+            ="##########\n"
+            +"#     #  #\n"
+            +"#  $  $$ #\n"
+            +"#  # #   #\n"
+            +"#### ###.#\n"
+            +"#  #   #.#\n"
+            +"# $  $ #.#\n"
+            +"#  ##.##.#\n"
+            +"##.##  #.#\n"
+            +"# $  $ #.#\n"
+            +"#   #  #.#\n"
+            +"### ####.#\n"
+            +"### #  @ #\n"
+            +"#  $  $$ #\n"
+            +"#        #\n"
+            +"##########\n";
+
+    protected String level4
+            =" #######\n"
+            +" #@    #\n"
+            +"##$##$$#\n"
+            +"# $    #\n"
+            +"# ##$# ##\n"
+            +"#.......#\n"
+            +"### ##  #\n"
+            +"#     $$#\n"
+            +"#   #   #\n"
+            +"#########\n";
+
+    protected String level5
+            = "      ########\n"
+            + "      #      #\n"
+            + "  ##### #### #\n"
+            + "  #   # #  # #\n"
+            + "  #        # #\n"
+            + "#### ####  # #\n"
+            + "#  $$## $$## #\n"
+            + "# ##.......  #\n"
+            + "# #   ## #####\n"
+            + "# # $$$  #\n"
+            + "# ### ####\n"
+            + "#@     #\n"
+            + "#######\n";
+
+//    protected String level6
 //            = "   ###  \n"
 //            + "   #.#  \n"
 //            + "   # #  \n"
@@ -106,8 +142,31 @@ public class Board extends JPanel {
                     this.getBoardHeight() + 2*OFFSET);
     }
 
-    protected void initBoard() {
+    public Board(Sokoban f, int levelNum) {
+        this.frame = f;
+        switch (levelNum) {
+            case 1 :
+                break;
+            case 2 :
+                level = level2;
+                break;
+            case 3 :
+                level = level3;
+                break;
+            case 4 :
+                level = level4;
+                break;
+            case 5 :
+                level = level5;
+                break;
+        }
+        initBoard();
 
+        f.setSize(this.getBoardWidth() + 5*OFFSET,
+                this.getBoardHeight() + 2*OFFSET);
+    }
+
+    protected void initBoard() {
         addKeyListener(createTAdapter());
         setFocusable(true);
         initWorld();
@@ -269,6 +328,7 @@ public class Board extends JPanel {
             }
 
             int key = e.getKeyCode();
+
 
             switch (key) {//� Ű�� ���������� Ȯ���Ѵ�. �츮�� cursorŰ�� ���� ���ڹݹ�ü�� �����Ѵ�.
             	//������ �����ٸ�, ���ڹ��� wall�̳� baggage�� �浹�ߴ��� üũ�Ѵ�. �浹���� �ʾҴٸ�, ���ڹ��� �������� �ű��.
@@ -747,9 +807,11 @@ public class Board extends JPanel {
                 bf.write(str + "\n");
             }
 
+            bf.close();
         } catch (Exception e) {
             System.out.println("Exception");
         }
+
 
     }
 }
