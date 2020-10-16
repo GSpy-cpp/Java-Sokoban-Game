@@ -10,6 +10,7 @@ public class HideSightPanel extends Board {
 
     public HideSightPanel(Sokoban f) {
         super(f);
+        gamemode = 1;
         ImageIcon iicon= new ImageIcon("src/resources/shadow2.png");
         shadow = iicon.getImage();
     }

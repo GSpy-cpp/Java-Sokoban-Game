@@ -6,7 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.*;
 
 public class Board extends JPanel {
@@ -25,6 +29,7 @@ public class Board extends JPanel {
     protected final int UP_DIRECTION     = 3;
     protected final int DOWN_DIRECTION   = 4;
 
+    protected int gamemode = 0;
 
     protected ArrayList<Wall>    walls;
     protected ArrayList<Baggage> baggs;
@@ -605,6 +610,11 @@ public class Board extends JPanel {
         if (finishedBags == nOfBags) {//finishedBags�� nOfBags(���� �� baggage��)�� ���� �� ������ ����ȴ�.
             
             isCompleted = true;
+
+            if (isBoard()) {
+                recordScore(this.moveCount);
+            }
+
             repaint();
         }
     }
@@ -703,5 +713,43 @@ public class Board extends JPanel {
 
     protected TAdapter createTAdapter() {
         return new TAdapter();
+    }
+
+    protected boolean isBoard() {
+        return this.gamemode == 0;
+    }
+
+    protected void recordScore(int score) {
+        try {
+            File              userfile  = new File("src/resources/user");
+            Scanner           scan      = new Scanner(userfile);
+            ArrayList<String> userInfos = new ArrayList<>();
+
+            while (scan.hasNextLine()) {
+                userInfos.add(scan.nextLine());
+            }
+            scan.close();
+
+            String[] infoBuf;
+            for (int i = 0; i < userInfos.size(); i++) {
+                infoBuf = userInfos.get(i).split("-");
+                if (!infoBuf[0].equals(frame.getUserid())) {
+                    continue;
+                }
+                if (Integer.valueOf(infoBuf[2]) > score) {
+                    String str = infoBuf[0] + "-" + infoBuf[1] + "-" + score;
+                    userInfos.set(i, str);
+                }
+            }
+
+            BufferedWriter bf = new BufferedWriter(new FileWriter(userfile));
+            for (String str : userInfos) {
+                bf.write(str + "\n");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception");
+        }
+
     }
 }

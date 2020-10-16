@@ -15,6 +15,7 @@ public class GaugePanel extends Board {
 
     public GaugePanel(Sokoban f) {
         super(f);
+        gamemode = 3;
         moveTimer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
