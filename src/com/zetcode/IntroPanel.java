@@ -20,7 +20,6 @@ public class IntroPanel extends JPanel {
 	final static int FRAME_HIGHT = 500;
 
 	int select = 0;
-	int bestscore = 100;// 최고점수
 	Image intro_image;
 
 	Sokoban sokoban;
@@ -58,11 +57,9 @@ public class IntroPanel extends JPanel {
 		g.setFont(new Font("myFont", Font.BOLD, 60));
 		g.setColor(Color.darkGray);
 		g.drawString("sokoban", 115, 130);
-		g.setFont(new Font("myFont", Font.BOLD, 20));
+		g.setFont(new Font("SansSerif", Font.BOLD, 20));
 		g.setColor(Color.blue);
 		g.drawString("BEST SCORE : " + getBestScore(), 145, 250);
-		g.setFont(new Font("secondFont", Font.BOLD, 20));
-		g.setColor(Color.red);
 	}
 
 	public void gameStart() {
