@@ -25,10 +25,23 @@ public class GamePanel extends JPanel {
 
 		setLayout(null);
 
+		JButton [] btn = new JButton[4];
+//		String[] btntext = {"1번","2번","3번"};
+//		for(int i = 0; i<btn.length; i++) {
+//			btn[i] = new JButton(btntext[i]);
+//			btn[i].setVisible(true);
+//			btn[i].addActionListener(handler);// 이벤트를 받아들인 컴포넌트 버튼 객체에 리스너 등록
+//			add(btn[i]);
+//		}
+//		btn[0].setBounds(125, 125, 30, 30);
+//		btn[0].setBounds(125, 185, 30, 30);
+//		btn[0].setBounds(125, 245, 30, 30);
+		
 		JButton btn1 = new JButton("1번");
 		btn1.addActionListener(handler);// 이벤트를 받아들인 컴포넌트 버튼 객체에 리스너 등록
 		btn1.setBounds(125, 125, 30, 30);
 		add(btn1);
+		setVisible(true);
 
 		JButton btn2 = new JButton("2번");
 		btn2.addActionListener(handler);//
@@ -44,7 +57,12 @@ public class GamePanel extends JPanel {
 //		btn4.addActionListener(handler);
 //		btn4.setBounds(125, 305, 30, 30);
 //		add(btn4);
-
+//
+//		JLabel label = new JLabel("hello");
+//		add(label);
+//		setVisible(true);
+//		System.out.println();
+		
 		setSize(new Dimension(FRAME_WIDTH, FRAME_HIGHT));// 프레임 창크기설정
 		sokoban.setLocationRelativeTo(null);
 		setVisible(true);
@@ -53,15 +71,14 @@ public class GamePanel extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		g.drawImage(image, 0, 0, 500, 500, this);
-		g.setFont(new Font("myFont", Font.BOLD, 20));
+		g.setFont(new Font("SansSerif", Font.BOLD, 20));
 		g.setColor(Color.blue);
-		g.drawString("<< CHOICE A GAME MODE >>", 95, 70);
+		g.drawString(" CHOICE A GAME MODE ", 100, 70);
 		g.setColor(Color.black);
 		g.drawString("BASIC MODE", 170, 145);
 		g.drawString("HIDE SIGHT MODE", 170, 205);
 		g.drawString("GAUGE MODE", 170, 265);
 //		g.drawString("PUT IN ORDER MODE", 170, 325);
-
 	}
 
 	public void basicStart() {
