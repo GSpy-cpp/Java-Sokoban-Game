@@ -11,7 +11,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.swing.*;
+
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import com.zetcode.Sokoban.MenuActionListener;
 
@@ -50,75 +52,75 @@ public class Board extends JPanel {
     protected Sokoban frame;
 
     protected boolean isCompleted = false;
-
-    protected String level
-            = "    ######\n"
-            + "    ##   #\n"
-            + "    ##$  #\n"
-            + "  ####  $##\n"
-            + "  ##  $ $ #\n"
-            + "#### # ## #   ######\n"
-            + "##   # ## #####  ..#\n"
-            + "## $  $          ..#\n"
-            + "###### ### #@##  ..#\n"
-            + "    ##     #########\n"
-            + "    ########\n";
-
-    protected String level2
-            ="   #####\n"
-            +"####   #\n"
-            +"#  #$  #####\n"
-            +"# $$       #\n"
-            +"#@   #$ $# #\n"
-            +"###  #   # #\n"
-            +" #   ##### #\n"
-            +" #   ..... #\n"
-            +" ###########\n";
-
-    protected String level3
-            ="##########\n"
-            +"#     #  #\n"
-            +"#  $  $$ #\n"
-            +"#  # #   #\n"
-            +"#### ###.#\n"
-            +"#  #   #.#\n"
-            +"# $  $ #.#\n"
-            +"#  ##.##.#\n"
-            +"##.##  #.#\n"
-            +"# $  $ #.#\n"
-            +"#   #  #.#\n"
-            +"### ####.#\n"
-            +"### #  @ #\n"
-            +"#  $  $$ #\n"
-            +"#        #\n"
-            +"##########\n";
-
-    protected String level4
-            =" #######\n"
-            +" #@    #\n"
-            +"##$##$$#\n"
-            +"# $    #\n"
-            +"# ##$# ##\n"
-            +"#.......#\n"
-            +"### ##  #\n"
-            +"#     $$#\n"
-            +"#   #   #\n"
-            +"#########\n";
-
-    protected String level5
-            = "      ########\n"
-            + "      #      #\n"
-            + "  ##### #### #\n"
-            + "  #   # #  # #\n"
-            + "  #        # #\n"
-            + "#### ####  # #\n"
-            + "#  $$## $$## #\n"
-            + "# ##.......  #\n"
-            + "# #   ## #####\n"
-            + "# # $$$  #\n"
-            + "# ### ####\n"
-            + "#@     #\n"
-            + "#######\n";
+    
+    protected String level;
+//            = "    ######\n"
+//            + "    ##   #\n"
+//            + "    ##$  #\n"
+//            + "  ####  $##\n"
+//            + "  ##  $ $ #\n"
+//            + "#### # ## #   ######\n"
+//            + "##   # ## #####  ..#\n"
+//            + "## $  $          ..#\n"
+//            + "###### ### #@##  ..#\n"
+//            + "    ##     #########\n"
+//            + "    ########\n";
+//
+//    protected String level2
+//            ="   #####\n"
+//            +"####   #\n"
+//            +"#  #$  #####\n"
+//            +"# $$       #\n"
+//            +"#@   #$ $# #\n"
+//            +"###  #   # #\n"
+//            +" #   ##### #\n"
+//            +" #   ..... #\n"
+//            +" ###########\n";
+//
+//    protected String level3
+//            ="##########\n"
+//            +"#     #  #\n"
+//            +"#  $  $$ #\n"
+//            +"#  # #   #\n"
+//            +"#### ###.#\n"
+//            +"#  #   #.#\n"
+//            +"# $  $ #.#\n"
+//            +"#  ##.##.#\n"
+//            +"##.##  #.#\n"
+//            +"# $  $ #.#\n"
+//            +"#   #  #.#\n"
+//            +"### ####.#\n"
+//            +"### #  @ #\n"
+//            +"#  $  $$ #\n"
+//            +"#        #\n"
+//            +"##########\n";
+//
+//    protected String level4
+//            =" #######\n"
+//            +" #@    #\n"
+//            +"##$##$$#\n"
+//            +"# $    #\n"
+//            +"# ##$# ##\n"
+//            +"#.......#\n"
+//            +"### ##  #\n"
+//            +"#     $$#\n"
+//            +"#   #   #\n"
+//            +"#########\n";
+//
+//    protected String level5
+//            = "      ########\n"
+//            + "      #      #\n"
+//            + "  ##### #### #\n"
+//            + "  #   # #  # #\n"
+//            + "  #        # #\n"
+//            + "#### ####  # #\n"
+//            + "#  $$## $$## #\n"
+//            + "# ##.......  #\n"
+//            + "# #   ## #####\n"
+//            + "# # $$$  #\n"
+//            + "# ### ####\n"
+//            + "#@     #\n"
+//            + "#######\n";
 
 //    protected String level6
 //            = "   ###  \n"
@@ -134,8 +136,6 @@ public class Board extends JPanel {
 //            + "   #.#  \n"
 //            + "   ###  \n";
 
-
-
     public Board(Sokoban f) {
         this.frame = f;
         initBoard();
@@ -146,29 +146,30 @@ public class Board extends JPanel {
 
     public Board(Sokoban f, int levelNum) {//basic 레벨
         this.frame = f;
+        Level m = null;
         switch (levelNum) {
             case 1 :
+            	level =  m.level(1);
                 break;
             case 2 :
-                level = level2;
+                level = m.level(2);
                 break;
             case 3 :
-                level = level3;
+                level = m.level(3);
                 break;
             case 4 :
-                level = level4;
+                level = m.level(4);
                 break;
             case 5 :
-                level = level5;
+                level = m.level(5);
                 break;
         }
         initBoard();
 
-        f.setSize(this.getBoardWidth() + 5*OFFSET,
-                this.getBoardHeight() + 4*OFFSET);
+        f.setSize(this.getBoardWidth() + 5*OFFSET, this.getBoardHeight() + 4*OFFSET);
     }
 
-    public Board(MenuActionListener menuActionListener, int i) {
+    public Board(MenuActionListener menuActionListener, int i) {//??
 		// TODO Auto-generated constructor stub
 	}
 
@@ -309,7 +310,7 @@ public class Board extends JPanel {
         super.paintComponent(g);
         buildWorld(g);
     }
-
+//
     protected class TAdapter extends KeyAdapter {
 
         @Override

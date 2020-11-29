@@ -28,3 +28,7 @@
 /TestBoard.class
 /TestLoginPanel.class
 /Wall.class
+/Map.class
+/Board_condition.class
+/Board_condition$TAdapter.class
+/Level.class
