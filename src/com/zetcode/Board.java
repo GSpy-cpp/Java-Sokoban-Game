@@ -54,6 +54,7 @@ public class Board extends JPanel {
     protected boolean isCompleted = false;
     
     protected String level;
+    protected Level m;
 //            = "    ######\n"
 //            + "    ##   #\n"
 //            + "    ##$  #\n"
@@ -146,7 +147,6 @@ public class Board extends JPanel {
 
     public Board(Sokoban f, int levelNum) {//basic 레벨
         this.frame = f;
-        Level m = null;
         switch (levelNum) {
             case 1 :
             	level =  m.level(1);
