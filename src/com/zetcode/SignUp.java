@@ -49,7 +49,7 @@ public class SignUp extends JDialog {
 
     private void initSignUpUI() {
         this.setLayout(null);
-        this.setBackground(new Color(250, 240, 170));
+
 
         this.IDLabel = new JLabel("ID");
         IDLabel.setBounds(LEFTRIGHT_SPACE, TOPBOTTOM_SPACE, LABEL_WIDTH, TEXTFIELD_HEIGHT);
@@ -68,6 +68,9 @@ public class SignUp extends JDialog {
         signUpBtn.setBounds(LEFTRIGHT_SPACE+LABEL_WIDTH+TEXTFIELD_WIDTH+ SIGNUPBTN_SPACE,
                 TOPBOTTOM_SPACE+ SIGNUPBTN_SPACE,
                 SIGNUPBTN_SIZE, SIGNUPBTN_SIZE);
+
+        setLocationRelativeTo(null);
+        this.setBackground(new Color(250, 240, 170));
     }
 
     private void register(String ID, String password) {
