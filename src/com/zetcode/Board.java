@@ -496,22 +496,10 @@ public class Board extends JPanel {
 
                     if (soko.isLeftCollision(bag)) {
 
-                        for (int j = 0; j < baggs.size(); j++) {
-                            
-                            Baggage item = baggs.get(j);
-                            
-                            if (!bag.equals(item)) {//baggage�� baggage�� �浹�� ��
-                                
-                                if (bag.isLeftCollision(item)) {
-                                    return true;
-                                }
-                            }
-                            
-                            if (checkWallCollision(bag, LEFT_COLLISION)) {//baggage�� ���� �浹�� ��
-                                return true;
-                            }
+                        if (checkBagLeft0(bag)) {
+                            return true;
                         }
-                        
+
                         bag.move(-SPACE, 0);
                         bagMoveStack.push(true);
                         bagMovedFlag = true;
@@ -531,23 +519,11 @@ public class Board extends JPanel {
                     Baggage bag = baggs.get(i);
                     
                     if (soko.isRightCollision(bag)) {
-                        
-                        for (int j = 0; j < baggs.size(); j++) {
 
-                            Baggage item = baggs.get(j);
-                            
-                            if (!bag.equals(item)) {
-                                
-                                if (bag.isRightCollision(item)) {
-                                    return true;
-                                }
-                            }
-                            
-                            if (checkWallCollision(bag, RIGHT_COLLISION)) {
-                                return true;
-                            }
+                        if (checkBagRight0(bag)) {
+                            return true;
                         }
-                        
+
                         bag.move(SPACE, 0);
                         bagMoveStack.push(true);
                         bagMovedFlag = true;
@@ -567,23 +543,11 @@ public class Board extends JPanel {
                     Baggage bag = baggs.get(i);
                     
                     if (soko.isTopCollision(bag)) {
-                        
-                        for (int j = 0; j < baggs.size(); j++) {
 
-                            Baggage item = baggs.get(j);
-
-                            if (!bag.equals(item)) {
-                                
-                                if (bag.isTopCollision(item)) {
-                                    return true;
-                                }
-                            }
-                            
-                            if (checkWallCollision(bag, TOP_COLLISION)) {
-                                return true;
-                            }
+                        if (checkBagTop0(bag)) {
+                            return true;
                         }
-                        
+
                         bag.move(0, -SPACE);
                         bagMoveStack.push(true);
                         bagMovedFlag = true;
@@ -603,24 +567,11 @@ public class Board extends JPanel {
                     Baggage bag = baggs.get(i);
                     
                     if (soko.isBottomCollision(bag)) {
-                        
-                        for (int j = 0; j < baggs.size(); j++) {
 
-                            Baggage item = baggs.get(j);
-                            
-                            if (!bag.equals(item)) {
-                                
-                                if (bag.isBottomCollision(item)) {
-                                    return true;
-                                }
-                            }
-                            
-                            if (checkWallCollision(bag,BOTTOM_COLLISION)) {
-                                
-                                return true;
-                            }
+                        if (checkBagBottom0(bag)) {
+                            return true;
                         }
-                        
+
                         bag.move(0, SPACE);
                         bagMoveStack.push(true);
                         bagMovedFlag = true;
@@ -637,6 +588,83 @@ public class Board extends JPanel {
                 break;
         }
 
+        return false;
+    }
+
+    protected boolean checkBagBottom0(Baggage bag) {
+        for (int j = 0; j < baggs.size(); j++) {
+
+            Baggage item = baggs.get(j);
+
+            if (!bag.equals(item)) {
+
+                if (bag.isBottomCollision(item)) {
+                    return true;
+                }
+            }
+
+            if (checkWallCollision(bag,BOTTOM_COLLISION)) {
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected boolean checkBagTop0(Baggage bag) {
+        for (int j = 0; j < baggs.size(); j++) {
+
+            Baggage item = baggs.get(j);
+
+            if (!bag.equals(item)) {
+
+                if (bag.isTopCollision(item)) {
+                    return true;
+                }
+            }
+
+            if (checkWallCollision(bag, TOP_COLLISION)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected boolean checkBagRight0(Baggage bag) {
+        for (int j = 0; j < baggs.size(); j++) {
+
+            Baggage item = baggs.get(j);
+
+            if (!bag.equals(item)) {
+
+                if (bag.isRightCollision(item)) {
+                    return true;
+                }
+            }
+
+            if (checkWallCollision(bag, RIGHT_COLLISION)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected boolean checkBagLeft0(Baggage bag) {
+        for (int j = 0; j < baggs.size(); j++) {
+
+            Baggage item = baggs.get(j);
+
+            if (!bag.equals(item)) {//baggage�� baggage�� �浹�� ��
+
+                if (bag.isLeftCollision(item)) {
+                    return true;
+                }
+            }
+
+            if (checkWallCollision(bag, LEFT_COLLISION)) {//baggage�� ���� �浹�� ��
+                return true;
+            }
+        }
         return false;
     }
 
