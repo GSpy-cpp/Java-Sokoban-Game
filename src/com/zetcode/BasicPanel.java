@@ -20,7 +20,7 @@ public class BasicPanel extends JPanel {
 		image = Toolkit.getDefaultToolkit().getImage("src/resources/IntroBackground_2.jpg");
 		
 		JButton [] btn = new JButton[5];
-		String[] btntext = {"1LEVEL","2LEVEL","3LEVEL","4LEVEL","5LEVEL"};
+		String[] btntext = {"1LEVEL","2LEVEL","3LEVEL","4LEVEL","5LEVEL"}; 
 		for(int i = 0; i<btn.length; i++) {
 			btn[i] = new JButton(btntext[i]);
 			btn[i].setVisible(true);
@@ -40,7 +40,7 @@ public class BasicPanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		g.drawImage(image, 0, 0, 500, 500, this);
-		g.setFont(new Font("바탕", Font.BOLD, 20));
+		g.setFont(new Font("SansSerif", Font.BOLD, 20));
 		g.setColor(Color.blue);
 		g.drawString(" CHOICE A LEVEL ",125, 70);
 	}

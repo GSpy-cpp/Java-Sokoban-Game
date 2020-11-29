@@ -34,7 +34,7 @@ public class LoginPanel extends JPanel {
     public LoginPanel(Sokoban frame) {
         initLoginUI();
         this.frame = frame;
-        frame.setTitle("Login");
+        frame.setTitle("Sokoban");
 
         loginBtn.addActionListener(new ActionListener() { // 로그인 버튼의 액션리스너
             @Override
@@ -67,6 +67,7 @@ public class LoginPanel extends JPanel {
         this.add(signUpBtn);
 
         frame.setSize(this.getFrameWidth(), this.getFrameHeight());
+    	frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 

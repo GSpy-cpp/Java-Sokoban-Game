@@ -35,21 +35,21 @@ public class Sokoban extends JFrame {// main Ŭ����
 
 	public void createMenu() {
 		JMenuBar mb = new JMenuBar(); // 메뉴바
-		JMenuItem [] menuItem = new JMenuItem [5];
-		JMenuItem [] modeItem = new JMenuItem [3];
-		String[] levelTitle = {"level 1","level 2","level 3","level 4","level 5"};
-		String[] modeTitle = {"basic","hide","gauge"};
+		JMenuItem[] menuItem = new JMenuItem[5];
+		JMenuItem[] modeItem = new JMenuItem[3];
+		String[] levelTitle = { "level 1", "level 2", "level 3", "level 4", "level 5" };
+		String[] modeTitle = { "basic", "hide", "gauge" };
 
 		JMenu levelMenu = new JMenu("LEVEL");
 		JMenu modeMenu = new JMenu("MODE");
 
 		MenuActionListener listener = new MenuActionListener();
-		for(int i=0; i<menuItem.length; i++) {
+		for (int i = 0; i < menuItem.length; i++) {
 			menuItem[i] = new JMenuItem(levelTitle[i]);
 			menuItem[i].addActionListener(listener);
 			levelMenu.add(menuItem[i]);
 		}
-		for(int i=0; i<modeItem.length; i++) {
+		for (int i = 0; i < modeItem.length; i++) {
 			modeItem[i] = new JMenuItem(modeTitle[i]);
 			modeItem[i].addActionListener(listener);
 			modeMenu.add(modeItem[i]);
@@ -81,7 +81,7 @@ public class Sokoban extends JFrame {// main Ŭ����
 			case "level 5":
 				changePanel(getBoardPanel5Name());
 				break;
-//
+//				
 			case "basic":
 				changePanel(getBasicPanelName());
 				break;
@@ -106,7 +106,6 @@ public class Sokoban extends JFrame {// main Ŭ����
 	// 사용예 : frame.changePanel(frame.getLobbyPanelName());
 	public void changePanel(String name) {
 		getContentPane().removeAll();
-
 		if (name.equals(INTROPANEL_NAME)) {
 			getContentPane().add(new IntroPanel(this));
 		}
@@ -120,28 +119,34 @@ public class Sokoban extends JFrame {// main Ŭ����
 		}
 		if (name.equals(BOARDPANEL1_NAME)) {
 			getContentPane().add(new Board(this, 1));
+			createMenu();
 		}
 		if (name.equals(BOARDPANEL2_NAME)) {
 			getContentPane().add(new Board(this, 2));
+			createMenu();
 		}
 		if (name.equals(BOARDPANEL3_NAME)) {
 			getContentPane().add(new Board(this, 3));
+			createMenu();
 		}
 		if (name.equals(BOARDPANEL4_NAME)) {
 			getContentPane().add(new Board(this, 4));
+			createMenu();
 		}
 		if (name.equals(BOARDPANEL5_NAME)) {
 			getContentPane().add(new Board(this, 5));
+			createMenu();
 		}
 		if (name.equals(HIDEPANEL_NAME)) {
 			getContentPane().add(new HideSightPanel(this));
-		}
-		if (name.equals(PUTINORDERPANEL_NAME)) {
-			getContentPane().add(new PutInOrderPanel(this));
 			createMenu();
 		}
+//		if (name.equals(PUTINORDERPANEL_NAME)) {
+//			getContentPane().add(new PutInOrderPanel(this));
+//		}
 		if (name.equals(GAUGEPANEL_NAME)) {
 			getContentPane().add(new GaugePanel(this));
+			createMenu();
 		}
 
 		repaint();
@@ -155,7 +160,6 @@ public class Sokoban extends JFrame {// main Ŭ����
 		setLocationRelativeTo(null);
 
 		getContentPane().add(this.getLoginPanelName(), new LoginPanel(this));
-
 
 	}
 
@@ -174,18 +178,23 @@ public class Sokoban extends JFrame {// main Ŭ����
 	public String getBasicPanelName() {
 		return BASICPANEL_NAME;
 	}
+
 	public String getBoardPanel1Name() {
 		return BOARDPANEL1_NAME;
 	}
+
 	public String getBoardPanel2Name() {
 		return BOARDPANEL2_NAME;
 	}
+
 	public String getBoardPanel3Name() {
 		return BOARDPANEL3_NAME;
 	}
+
 	public String getBoardPanel4Name() {
 		return BOARDPANEL4_NAME;
 	}
+
 	public String getBoardPanel5Name() {
 		return BOARDPANEL5_NAME;
 	}
@@ -194,17 +203,21 @@ public class Sokoban extends JFrame {// main Ŭ����
 		return HIDEPANEL_NAME;
 	}
 
-	public String getPutInOrderPanelName() {
-		return PUTINORDERPANEL_NAME;
-	}
+//	public String getPutInOrderPanelName() {
+//		return PUTINORDERPANEL_NAME;
+//	}
 
 	public String getGaugePanelName() {
 		return GAUGEPANEL_NAME;
 	}
 
-	public String getUserid() { return this.userid; }
+	public String getUserid() {
+		return this.userid;
+	}
 
-	public void setUserid(String id) { this.userid = id; }
+	public void setUserid(String id) {
+		this.userid = id;
+	}
 
 	public static void main(String[] args) {
 
