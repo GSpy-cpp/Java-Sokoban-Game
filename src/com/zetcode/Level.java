@@ -4,9 +4,9 @@ public class Level {
 	public Level() {
 	}
 	
-	public String level(int l) {
-		String level = null;
-		switch(l) {
+	String level;
+	public String level(int lv) {
+		switch(lv) {
 		case 1:
 			level =
 			"    ######\n"
@@ -86,4 +86,7 @@ public class Level {
 	}
 		return level;
 	}
+	
+	
+	
 }

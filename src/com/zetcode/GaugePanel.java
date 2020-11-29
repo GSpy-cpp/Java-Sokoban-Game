@@ -1,9 +1,10 @@
 package com.zetcode;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+
+import javax.swing.Timer;
 
 public class GaugePanel extends Board {
     private final int GAUGE_LEVEL_1 = 1;

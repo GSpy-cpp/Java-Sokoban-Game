@@ -158,7 +158,7 @@ public class Sokoban extends JFrame {// main Ŭ����
 		getContentPane().setLayout(cards);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-
+		
 		getContentPane().add(this.getLoginPanelName(), new LoginPanel(this));
 
 	}
