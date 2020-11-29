@@ -15,7 +15,7 @@ public class Sokoban extends JFrame {// main Ŭ����
 	final static int FRAME_WIDTH = 500;
 	final static int FRAME_HIGHT = 500;
 
-	private final int OFFSET = 50;
+	private final int OFFSET = 30;
 	private final String LOGINPANEl_NAME = "loginPanel";
 	private final String INTROPANEL_NAME = "introPanel";
 	private final String GAMEPANEL_NAME = "gamePanel";
@@ -111,9 +111,11 @@ public class Sokoban extends JFrame {// main Ŭ����
 		}
 		if (name.equals(GAMEPANEL_NAME)) {
 			getContentPane().add(new GamePanel(this));
+			createMenu();
 		}
 		if (name.equals(BASICPANEL_NAME)) {
 			getContentPane().add(new BasicPanel(this));
+			createMenu();
 		}
 		if (name.equals(BOARDPANEL1_NAME)) {
 			getContentPane().add(new Board(this, 1));
@@ -201,9 +203,9 @@ public class Sokoban extends JFrame {// main Ŭ����
 		return HIDEPANEL_NAME;
 	}
 
-	public String getPutInOrderPanelName() {
-		return PUTINORDERPANEL_NAME;
-	}
+//	public String getPutInOrderPanelName() {
+//		return PUTINORDERPANEL_NAME;
+//	}
 
 	public String getGaugePanelName() {
 		return GAUGEPANEL_NAME;

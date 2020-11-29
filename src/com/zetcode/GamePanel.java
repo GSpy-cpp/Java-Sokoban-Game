@@ -50,12 +50,11 @@ public class GamePanel extends JPanel {
 		g.drawImage(image, 0, 0, 500, 500, this);
 		g.setFont(new Font("SansSerif", Font.BOLD, 20));
 		g.setColor(Color.blue);
-		g.drawString("<< CHOICE A GAME MODE >>", 95, 70);
+		g.drawString("<< CHOICE A GAME MODE >>", 100, 70);
 		g.setColor(Color.black);
 		g.drawString("BASIC MODE", 170, 145);
 		g.drawString("HIDE SIGHT MODE", 170, 205);
 		g.drawString("GAUGE MODE", 170, 265);
-
 	}
 
 	public void basicStart() {

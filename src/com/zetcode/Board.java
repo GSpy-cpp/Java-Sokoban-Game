@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.*;
 
+import com.zetcode.Sokoban.MenuActionListener;
+
 public class Board extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -166,7 +168,11 @@ public class Board extends JPanel {
                 this.getBoardHeight() + 4*OFFSET);
     }
 
-    protected void initBoard() {
+    public Board(MenuActionListener menuActionListener, int i) {
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void initBoard() {
         addKeyListener(createTAdapter());
         setFocusable(true);
         initWorld();

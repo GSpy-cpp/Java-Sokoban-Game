@@ -42,7 +42,7 @@ public class BasicPanel extends JPanel {
 		g.drawImage(image, 0, 0, 500, 500, this);
 		g.setFont(new Font("SansSerif", Font.BOLD, 20));
 		g.setColor(Color.blue);
-		g.drawString("<< CHOICE A LEVEL >>",125, 70);
+		g.drawString(" CHOICE A LEVEL ",125, 70);
 	}
 	
 	public void level1_Start() {

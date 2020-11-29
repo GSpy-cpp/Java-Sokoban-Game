@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>Java-Sokoban-Game_final</name>
+=======
+	<name>Java-Sokoban-Game_2</name>
+>>>>>>> branch 'master' of https://github.com/GSpy-cpp/Java-Sokoban-Game
 	<comment></comment>
 	<projects>
 	</projects>
