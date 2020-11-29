@@ -17,12 +17,12 @@ public class Board extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-    protected final int OFFSET = 30;//������ â�� �׵θ��� ���� ������ ���� �Ÿ�
-    protected final int SPACE = 20;//20*20px(�� �̹��� ������)
-    protected final int LEFT_COLLISION = 1;//���� �浹
-    protected final int RIGHT_COLLISION = 2;//������ �浹
-    protected final int TOP_COLLISION = 3;//��� �浹
-    protected final int BOTTOM_COLLISION = 4;//�ϴ� �浹
+    protected final int OFFSET = 30;
+    protected final int SPACE = 20;
+    protected final int LEFT_COLLISION = 1;
+    protected final int RIGHT_COLLISION = 2;
+    protected final int TOP_COLLISION = 3;
+    protected final int BOTTOM_COLLISION = 4;
     protected final int MAX_MOVE         = 300;
     protected final int LEFT_DIRECTION   = 1;
     protected final int RIGHT_DIRECTION  = 2;
@@ -139,10 +139,10 @@ public class Board extends JPanel {
         initBoard();
 
         f.setSize(this.getBoardWidth() + 5*OFFSET,
-                    this.getBoardHeight() + 2*OFFSET);
+                    this.getBoardHeight() + 3*OFFSET);
     }
 
-    public Board(Sokoban f, int levelNum) {
+    public Board(Sokoban f, int levelNum) {//basic 레벨
         this.frame = f;
         switch (levelNum) {
             case 1 :
@@ -163,7 +163,7 @@ public class Board extends JPanel {
         initBoard();
 
         f.setSize(this.getBoardWidth() + 5*OFFSET,
-                this.getBoardHeight() + 2*OFFSET);
+                this.getBoardHeight() + 4*OFFSET);
     }
 
     protected void initBoard() {
@@ -212,7 +212,7 @@ public class Board extends JPanel {
 
         for (int i = 0; i < level.length(); i++) {
 
-            char item = level.charAt(i);//���ڿ����� ���ڷ� �־��� ���� �ش��ϴ� ���ڸ� �����Ѵ�.
+            char item = level.charAt(i);
 
             switch (item) {
 
@@ -262,21 +262,17 @@ public class Board extends JPanel {
     }
 
     protected void buildWorld(Graphics g) {
-    	//������ �����쿡 �׸���.
 
         g.setColor(new Color(250, 240, 170));
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        //��ǥ (0,0)�� ũ�⸸ŭ �簢���� �׸���.
         ArrayList<Actor> world = new ArrayList<>();
-        //world = ������ ��� ��ü�� ����
         world.addAll(walls);
         world.addAll(areas);
         world.addAll(baggs);
         world.add(soko);
-        //�����̳ʸ� ���� �ݺ��ؼ� ��ü�� �׸���. �÷��̾�� baggage�̹������� ���� �۾Ƽ� ��ǥ�� 2px�� ���ؼ� �߽��� ��´�.
         for (int i = 0; i < world.size(); i++) {
 
-            Actor item = world.get(i);//�����̳ʵ��� �ݺ��ؼ� ������.
+            Actor item = world.get(i);
 
             if (item instanceof Player || item instanceof Baggage) {
                 
@@ -304,8 +300,7 @@ public class Board extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);//super�� �θ� Ŭ�����κ��� ��ӹ��� �ʵ峪 �޼ҵ带 �ڽ� Ŭ�������� �����ϴ� �� ����ϴ� ���� ����
-        //������Ʈ�� �׸����� �ϴ� ��������, ũ�Ⱑ ����ǰų� ��ġ�� ����ǰų� ������Ʈ�� �������� ���� ������� ��
+        super.paintComponent(g);
         buildWorld(g);
     }
 
@@ -316,12 +311,6 @@ public class Board extends JPanel {
 
             if (isCompleted) {
                 return;
-                //1. �ǵ�����
-                //����� ���ؿ��� �ڵ��� ��������� �����Ǵ� �κ�
-                //2. �ƹ��͵� ���°���
-                //���ÿ� � ���� �������� �ʴ°��� �ǹ�
-                //3. ������ ��
-                //�����Ϸ����� ������ �������� ���ο� ������ �ؼ��� �غ��Ұ��� �˷��ش�.
             }
             if (moveCount == MAX_MOVE) {
                 return;
@@ -330,8 +319,7 @@ public class Board extends JPanel {
             int key = e.getKeyCode();
 
 
-            switch (key) {//� Ű�� ���������� Ȯ���Ѵ�. �츮�� cursorŰ�� ���� ���ڹݹ�ü�� �����Ѵ�.
-            	//������ �����ٸ�, ���ڹ��� wall�̳� baggage�� �浹�ߴ��� üũ�Ѵ�. �浹���� �ʾҴٸ�, ���ڹ��� �������� �ű��.
+            switch (key) {
                 case KeyEvent.VK_LEFT:
                 	
                     if (checkWallCollision(soko, LEFT_COLLISION)) {

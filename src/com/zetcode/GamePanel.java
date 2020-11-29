@@ -14,7 +14,7 @@ public class GamePanel extends JPanel {
 	final static int FRAME_WIDTH = 500;
 	final static int FRAME_HIGHT = 500;
 	Image image;
-	
+
 	Sokoban sokoban;
 
 	public GamePanel(Sokoban sokoban) {
@@ -40,11 +40,6 @@ public class GamePanel extends JPanel {
 		btn3.setBounds(125, 245, 30, 30);
 		add(btn3);
 
-//		JButton btn4 = new JButton("4번");
-//		btn4.addActionListener(handler);
-//		btn4.setBounds(125, 305, 30, 30);
-//		add(btn4);
-
 		setSize(new Dimension(FRAME_WIDTH, FRAME_HIGHT));// 프레임 창크기설정
 		sokoban.setLocationRelativeTo(null);
 		setVisible(true);
@@ -53,14 +48,13 @@ public class GamePanel extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		g.drawImage(image, 0, 0, 500, 500, this);
-		g.setFont(new Font("myFont", Font.BOLD, 20));
+		g.setFont(new Font("SansSerif", Font.BOLD, 20));
 		g.setColor(Color.blue);
 		g.drawString("<< CHOICE A GAME MODE >>", 95, 70);
 		g.setColor(Color.black);
 		g.drawString("BASIC MODE", 170, 145);
 		g.drawString("HIDE SIGHT MODE", 170, 205);
 		g.drawString("GAUGE MODE", 170, 265);
-//		g.drawString("PUT IN ORDER MODE", 170, 325);
 
 	}
 
@@ -71,12 +65,4 @@ public class GamePanel extends JPanel {
 	public void hideStart() {
 		sokoban.changePanel(sokoban.getHidePanelName());
 	}
-//
-//	public void gaugeStart() {
-//		controller.showGaugePanel();
-//	}
-//
-//	public void putinStart() {
-//		controller.showPutInPanel();
-//	}
 }
