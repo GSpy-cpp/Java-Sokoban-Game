@@ -15,6 +15,8 @@ public class LoginPanel extends JPanel {
     private JLabel     passwordLabel;
     private JTextField passwordTextField;
     private JButton    loginBtn;
+    private JButton    signUpBtn;
+    private SignUp     signUpDialog;
 
     private final int LEFTRIGHT_SPACE  = 10;
     private final int TOPBOTTOM_SPACE  = 20;
@@ -23,16 +25,18 @@ public class LoginPanel extends JPanel {
     private final int TEXTFIELD_WIDTH  = 150;
     private final int LOGINBTN_SPACE   = 0;
     private final int LOGINBTN_SIZE    = 2*(TEXTFIELD_HEIGHT-LOGINBTN_SPACE);
+    private final int SIGNUPBTN_HEIGHT = TEXTFIELD_HEIGHT;
+    private final int SIGNUPBTN_WIDTH  = 100;
 
     private int getFrameWidth()  { return 2*LEFTRIGHT_SPACE + LABEL_WIDTH + TEXTFIELD_WIDTH + 2*LOGINBTN_SPACE + LOGINBTN_SIZE + 20; }
-    private int getFrameHeight() { return 2*TOPBOTTOM_SPACE + 2*TEXTFIELD_HEIGHT + 40; }
+    private int getFrameHeight() { return 2*TOPBOTTOM_SPACE + 2*TEXTFIELD_HEIGHT + 100; }
 
     public LoginPanel(Sokoban frame) {
         initLoginUI();
         this.frame = frame;
         frame.setTitle("Login");
 
-        loginBtn.addActionListener(new ActionListener() {
+        loginBtn.addActionListener(new ActionListener() { // 로그인 버튼의 액션리스너
             @Override
             public void actionPerformed(ActionEvent e) {
                 String id       = IDTextField.getText();
@@ -47,11 +51,20 @@ public class LoginPanel extends JPanel {
             }
         });
 
+        signUpBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                signUpDialog = new SignUp(frame, "Sign Up");
+                signUpDialog.setVisible(true);
+            }
+        });
+
         this.add(IDLabel);
         this.add(IDTextField);
         this.add(passwordLabel);
         this.add(passwordTextField);
         this.add(loginBtn);
+        this.add(signUpBtn);
 
         frame.setSize(this.getFrameWidth(), this.getFrameHeight());
         frame.setVisible(true);
@@ -78,6 +91,10 @@ public class LoginPanel extends JPanel {
         loginBtn.setBounds(LEFTRIGHT_SPACE+LABEL_WIDTH+TEXTFIELD_WIDTH+LOGINBTN_SPACE,
                             TOPBOTTOM_SPACE+LOGINBTN_SPACE,
                             LOGINBTN_SIZE, LOGINBTN_SIZE);
+
+        this.signUpBtn = new JButton("Sign Up");
+        signUpBtn.setBounds(LEFTRIGHT_SPACE, 2*TOPBOTTOM_SPACE+2*TEXTFIELD_HEIGHT,
+                            SIGNUPBTN_WIDTH, SIGNUPBTN_HEIGHT);
     }
 
     private boolean isValidUser(String id, String password) {
