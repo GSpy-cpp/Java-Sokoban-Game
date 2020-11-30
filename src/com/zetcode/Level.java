@@ -4,11 +4,11 @@ public class Level {
 	public Level() {
 	}
 	
-	String level;
-	public String level(int lv) {
+	public String Level(int lv) {
+		String map = null;
 		switch(lv) {
 		case 1:
-			level =
+			map =
 			"    ######\n"
           + "    ##   #\n"
           + "    ##$  #\n"
@@ -23,7 +23,7 @@ public class Level {
 		break;
 		
 		case 2:
-			level = 
+			map = 
 			 "   #####\n"
 			+"####   #\n"
 			+"#  #$  #####\n"
@@ -36,7 +36,7 @@ public class Level {
 		break;
 
 		case 3:
-			level = 
+			map = 
 			"##########\n"
 			+"#     #  #\n"
 			+"#  $  $$ #\n"
@@ -56,7 +56,7 @@ public class Level {
 		break;
 		
 		case 4:
-			level = 
+			map = 
 			" #######\n"
 	        +" #@    #\n"
 	        +"##$##$$#\n"
@@ -69,7 +69,7 @@ public class Level {
 	        +"#########\n";
 
 		case 5:
-			level = 
+			map = 
 	          "      ########\n"
 	        + "      #      #\n"
 	        + "  ##### #### #\n"
@@ -84,9 +84,7 @@ public class Level {
 	        + "#@     #\n"
 	        + "#######\n";
 	}
-		return level;
+		return map;
 	}
-	
-	
-	
+
 }

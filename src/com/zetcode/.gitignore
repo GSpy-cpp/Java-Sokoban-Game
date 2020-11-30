@@ -36,3 +36,7 @@
 /Tadapter.class
 /Undo.class
 /RecordScore.class
+/KeyEvent.class
+/KeyControl.class
+/KeyControl$TAdapter.class
+/CheckCollision.class

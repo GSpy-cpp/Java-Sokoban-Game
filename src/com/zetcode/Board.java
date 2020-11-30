@@ -52,74 +52,74 @@ public class Board extends JPanel {
 
 	protected boolean isCompleted = false;
 
-    protected String level
-            = "    ######\n"
-            + "    ##   #\n"
-            + "    ##$  #\n"
-            + "  ####  $##\n"
-            + "  ##  $ $ #\n"
-            + "#### # ## #   ######\n"
-            + "##   # ## #####  ..#\n"
-            + "## $  $          ..#\n"
-            + "###### ### #@##  ..#\n"
-            + "    ##     #########\n"
-            + "    ########\n";
-
-    protected String level2
-            ="   #####\n"
-            +"####   #\n"
-            +"#  #$  #####\n"
-            +"# $$       #\n"
-            +"#@   #$ $# #\n"
-            +"###  #   # #\n"
-            +" #   ##### #\n"
-            +" #   ..... #\n"
-            +" ###########\n";
-
-    protected String level3
-            ="##########\n"
-            +"#     #  #\n"
-            +"#  $  $$ #\n"
-            +"#  # #   #\n"
-            +"#### ###.#\n"
-            +"#  #   #.#\n"
-            +"# $  $ #.#\n"
-            +"#  ##.##.#\n"
-            +"##.##  #.#\n"
-            +"# $  $ #.#\n"
-            +"#   #  #.#\n"
-            +"### ####.#\n"
-            +"### #  @ #\n"
-            +"#  $  $$ #\n"
-            +"#        #\n"
-            +"##########\n";
-
-    protected String level4
-            =" #######\n"
-            +" #@    #\n"
-            +"##$##$$#\n"
-            +"# $    #\n"
-            +"# ##$# ##\n"
-            +"#.......#\n"
-            +"### ##  #\n"
-            +"#     $$#\n"
-            +"#   #   #\n"
-            +"#########\n";
-
-    protected String level5
-            = "      ########\n"
-            + "      #      #\n"
-            + "  ##### #### #\n"
-            + "  #   # #  # #\n"
-            + "  #        # #\n"
-            + "#### ####  # #\n"
-            + "#  $$## $$## #\n"
-            + "# ##.......  #\n"
-            + "# #   ## #####\n"
-            + "# # $$$  #\n"
-            + "# ### ####\n"
-            + "#@     #\n"
-            + "#######\n";
+//    protected String level
+//            = "    ######\n"
+//            + "    ##   #\n"
+//            + "    ##$  #\n"
+//            + "  ####  $##\n"
+//            + "  ##  $ $ #\n"
+//            + "#### # ## #   ######\n"
+//            + "##   # ## #####  ..#\n"
+//            + "## $  $          ..#\n"
+//            + "###### ### #@##  ..#\n"
+//            + "    ##     #########\n"
+//            + "    ########\n";
+//
+//    protected String level2
+//            ="   #####\n"
+//            +"####   #\n"
+//            +"#  #$  #####\n"
+//            +"# $$       #\n"
+//            +"#@   #$ $# #\n"
+//            +"###  #   # #\n"
+//            +" #   ##### #\n"
+//            +" #   ..... #\n"
+//            +" ###########\n";
+//
+//    protected String level3
+//            ="##########\n"
+//            +"#     #  #\n"
+//            +"#  $  $$ #\n"
+//            +"#  # #   #\n"
+//            +"#### ###.#\n"
+//            +"#  #   #.#\n"
+//            +"# $  $ #.#\n"
+//            +"#  ##.##.#\n"
+//            +"##.##  #.#\n"
+//            +"# $  $ #.#\n"
+//            +"#   #  #.#\n"
+//            +"### ####.#\n"
+//            +"### #  @ #\n"
+//            +"#  $  $$ #\n"
+//            +"#        #\n"
+//            +"##########\n";
+//
+//    protected String level4
+//            =" #######\n"
+//            +" #@    #\n"
+//            +"##$##$$#\n"
+//            +"# $    #\n"
+//            +"# ##$# ##\n"
+//            +"#.......#\n"
+//            +"### ##  #\n"
+//            +"#     $$#\n"
+//            +"#   #   #\n"
+//            +"#########\n";
+//
+//    protected String level5
+//            = "      ########\n"
+//            + "      #      #\n"
+//            + "  ##### #### #\n"
+//            + "  #   # #  # #\n"
+//            + "  #        # #\n"
+//            + "#### ####  # #\n"
+//            + "#  $$## $$## #\n"
+//            + "# ##.......  #\n"
+//            + "# #   ## #####\n"
+//            + "# # $$$  #\n"
+//            + "# ### ####\n"
+//            + "#@     #\n"
+//            + "#######\n";
 
 //    protected String level6
 //            = "   ###  \n"
@@ -139,28 +139,28 @@ public class Board extends JPanel {
 		this.frame = f;
 		initBoard();
 		f.setSize(this.getBoardWidth() + 5 * OFFSET, this.getBoardHeight() + 4 * OFFSET);
-//		this.frame = f;
-//		initBoard();
-//		f.setSize(this.getBoardWidth() + 5 * OFFSET, this.getBoardHeight() + 4 * OFFSET);
 	}
 
-//    Level lv;
+	protected Level lv;
+
 	public Board(Sokoban f, int levelNum) {// basic 레벨
 		this.frame = f;
 		switch (levelNum) {
 		case 1:
+			lv.Level(1);
 			break;
 		case 2:
-			level = level2;
+			lv.Level(2);
 			break;
 		case 3:
-			level = level3;
+			lv.Level(3);
 			break;
 		case 4:
-			level = level4;
+			lv.Level(4);
 			break;
 		case 5:
-			level = level5;
+			lv.Level(5);
+//			level = level5;
 			break;
 		}
 		initBoard();
@@ -215,54 +215,57 @@ public class Board extends JPanel {
 		});
 		timer.start();
 
-		for (int i = 0; i < level.length(); i++) {
+//		for (int i = 0; i < level.length(); i++) {
+		for (int j = 1; j < 5; j++) {
+			for (int i = 0; i < lv.Level(j).length(); i++) {
 
-			char item = level.charAt(i);// 문자인덱스위치
+				char item = lv.Level(j).charAt(i);// 문자인덱스위치
 
-			switch (item) {
+				switch (item) {
 
-			case '\n':
-				y += SPACE;
+				case '\n':
+					y += SPACE;
 
-				if (this.w < x) {
-					this.w = x;
+					if (this.w < x) {
+						this.w = x;
+					}
+
+					x = OFFSET;
+					break;
+
+				case '#':
+					wall = new Wall(x, y);
+					walls.add(wall);
+					x += SPACE;
+					break;
+
+				case '$':
+					b = new Baggage(x, y);
+					baggs.add(b);
+					x += SPACE;
+					break;
+
+				case '.':
+					a = new Area(x, y);
+					areas.add(a);
+					x += SPACE;
+					break;
+
+				case '@':
+					soko = new Player(x, y);
+					x += SPACE;
+					break;
+
+				case ' ':
+					x += SPACE;
+					break;
+
+				default:
+					break;
 				}
 
-				x = OFFSET;
-				break;
-
-			case '#':
-				wall = new Wall(x, y);
-				walls.add(wall);
-				x += SPACE;
-				break;
-
-			case '$':
-				b = new Baggage(x, y);
-				baggs.add(b);
-				x += SPACE;
-				break;
-
-			case '.':
-				a = new Area(x, y);
-				areas.add(a);
-				x += SPACE;
-				break;
-
-			case '@':
-				soko = new Player(x, y);
-				x += SPACE;
-				break;
-
-			case ' ':
-				x += SPACE;
-				break;
-
-			default:
-				break;
+				h = y;
 			}
-
-			h = y;
 		}
 	}
 
@@ -797,11 +800,11 @@ public class Board extends JPanel {
 		return new TAdapter();
 	}
 
-//        protected boolean isBoard() {
+//        protected boolean isBoard() { //inline
 //        return this.gamemode == 0;
 //    }
 
-//	protected void recordScore(int score) {
+//	protected void recordScore(int score) { //extract class
 //		try {
 //			File userfile = new File("src/resources/user");
 //			Scanner scan = new Scanner(userfile);
