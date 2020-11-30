@@ -1,8 +1,15 @@
 package com.zetcode;
 
 public class CheckCollision {
-	protected boolean checkBagBottom0(Baggage bag) {
-		for (int j = 0; j < baggs.size(); j++) {
+	Board board;
+	Baggage b;
+
+	public CheckCollision() {
+	}
+
+	public boolean CheckCollision(Baggage bag){
+		boolean checkBagBottom0(Baggage bag) {
+		for (int j = 0; j < board.baggs.size(); j++) {
 
 			Baggage item = baggs.get(j);
 
@@ -20,7 +27,7 @@ public class CheckCollision {
 		return false;
 	}
 
-	protected boolean checkBagTop0(Baggage bag) {
+	public boolean checkBagTop0(Baggage bag) {
 		for (int j = 0; j < baggs.size(); j++) {
 
 			Baggage item = baggs.get(j);
@@ -75,5 +82,6 @@ public class CheckCollision {
 			}
 		}
 		return false;
+	}
 	}
 }

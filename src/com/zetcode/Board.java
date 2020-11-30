@@ -145,24 +145,25 @@ public class Board extends JPanel {
 
 	public Board(Sokoban f, int levelNum) {// basic 레벨
 		this.frame = f;
-		switch (levelNum) {
-		case 1:
-			lv.Level(1);
-			break;
-		case 2:
-			lv.Level(2);
-			break;
-		case 3:
-			lv.Level(3);
-			break;
-		case 4:
-			lv.Level(4);
-			break;
-		case 5:
-			lv.Level(5);
+		lv.Level(levelNum);
+//		switch (levelNum) {
+//		case 1:
+//			lv.Level(1);
+//			break;
+//		case 2:
+//			lv.Level(2);
+//			break;
+//		case 3:
+//			lv.Level(3);
+//			break;
+//		case 4:
+//			lv.Level(4);
+//			break;
+//		case 5:
+//			lv.Level(5);
 //			level = level5;
-			break;
-		}
+//			break;
+//		}
 		initBoard();
 		f.setSize(this.getBoardWidth() + 5 * OFFSET, this.getBoardHeight() + 4 * OFFSET);
 	}
