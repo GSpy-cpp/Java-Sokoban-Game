@@ -592,7 +592,7 @@ public class Board extends JPanel {
 
 		return false;
 	}
-
+///
 	protected boolean checkBagBottom0(Baggage bag) {
 		for (int j = 0; j < baggs.size(); j++) {
 
@@ -606,7 +606,6 @@ public class Board extends JPanel {
 			}
 
 			if (checkWallCollision(bag, BOTTOM_COLLISION)) {
-
 				return true;
 			}
 		}
